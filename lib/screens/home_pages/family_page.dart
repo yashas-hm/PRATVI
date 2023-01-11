@@ -1,0 +1,256 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pratvi/controller/controller.dart';
+import 'package:pratvi/core/color_constants.dart';
+import 'package:pratvi/widgets/custom_appbar.dart';
+import 'package:resize/resize.dart';
+import 'package:url_launcher/link.dart';
+
+class FamilyPage extends StatelessWidget {
+  FamilyPage({Key? key}) : super(key: key);
+
+  final controller = Get.find<Controller>();
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: CustomAppBar.customAppBar('Family Details', backEnabled: false),
+      body: SizedBox(
+        width: screenSize.width,
+        height: screenSize.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.all(13.sp),
+              width: screenSize.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Driver: ${controller.family.driverName}',
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors().darkBlue,
+                      ),
+                    ),
+                  ),
+                  Link(
+                    uri:
+                        Uri.parse('tel://+91${controller.family.driverNumber}'),
+                    builder: (ctx, link) => InkWell(
+                      onTap: link,
+                      child: Container(
+                        width: 80.sp,
+                        height: 30.sp,
+                        margin: EdgeInsets.only(left: 5.sp),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8.sp)),
+                          color: AppColors().darkBlue,
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Call',
+                          style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(13.sp),
+              width: screenSize.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Coordinator: ${controller.family.coordinatorName}',
+                      maxLines: 2,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors().darkBlue,
+                      ),
+                    ),
+                  ),
+                  Link(
+                    uri: Uri.parse(
+                        'tel://+91${controller.family.coordinatorNo}'),
+                    builder: (ctx, link) => InkWell(
+                      onTap: link,
+                      child: Container(
+                        width: 80.sp,
+                        height: 30.sp,
+                        margin: EdgeInsets.only(left: 5.sp),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8.sp)),
+                          color: AppColors().darkBlue,
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Call',
+                          style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: screenSize.width,
+              padding: EdgeInsets.all(13.sp),
+              alignment: Alignment.center,
+              child: Text(
+                'Bus Number: ${controller.family.busNumber}',
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors().darkBlue,
+                ),
+              ),
+            ),
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: EdgeInsets.all(13.sp),
+              itemBuilder: (ctx, index) => FamilyItem(
+                name: controller.family.familyName[index],
+                number: controller.family.familyNumber[index],
+                roomNo: controller.family.roomNo[index],
+              ),
+              itemCount: controller.family.familyName.length,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FamilyItem extends StatefulWidget {
+  const FamilyItem({
+    Key? key,
+    required this.name,
+    required this.number,
+    required this.roomNo,
+  }) : super(key: key);
+
+  final String name;
+  final String number;
+  final String roomNo;
+
+  @override
+  State<FamilyItem> createState() => _FamilyItemState();
+}
+
+class _FamilyItemState extends State<FamilyItem> {
+  bool more = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return InkWell(
+      onTap: () => setState(() {
+        more = !more;
+      }),
+      splashColor: AppColors().darkBlue,
+      child: Container(
+        width: screenSize.width,
+        padding: EdgeInsets.all(10.sp),
+        margin: EdgeInsets.only(bottom: 10.sp),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(18.sp),
+          border: Border.all(
+            width: 2.sp,
+            color: AppColors().darkBlue,
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    child: Text(
+                      widget.name,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                Icon(
+                  more
+                      ? Icons.keyboard_arrow_up_rounded
+                      : Icons.keyboard_arrow_down_rounded,
+                  size: 30.sp,
+                  color: AppColors().darkBlue,
+                ),
+              ],
+            ),
+            if (more)
+              SizedBox(
+                height: 5.sp,
+              ),
+            if (more)
+              SizedBox(
+                width: screenSize.width,
+                child: Text(
+                  'Room Number: ${widget.roomNo}',
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors().darkBlue,
+                  ),
+                ),
+              ),
+            if (more)
+              SizedBox(
+                height: 5.sp,
+              ),
+            if (more)
+              SizedBox(
+                width: screenSize.width,
+                child: Text(
+                  'Phone Number: +91-${widget.number}',
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors().darkBlue,
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
