@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pratvi/controller/controller.dart';
 import 'package:pratvi/core/app_constants.dart';
 import 'package:pratvi/core/color_constants.dart';
+import 'package:pratvi/screens/cood_home_pages/bus_stats_page.dart';
 import 'package:pratvi/screens/cood_home_pages/coord_home_page.dart';
 import 'package:pratvi/screens/cood_home_pages/coord_list_page.dart';
 import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar.dart';
@@ -18,6 +19,7 @@ class CoordHomeScreen extends StatelessWidget {
     switch(index){
       case 0: return const CoordHomePage();
       case 1: return const CoordListPage();
+      case 2: return const BusStatusPage();
       default: return const CoordHomePage();
     }
   }
@@ -55,6 +57,9 @@ class CoordHomeScreen extends StatelessWidget {
                   FluidNavBarIcon(
                     svgPath: AppConstants.familyInfoIcon,
                   ),
+                  FluidNavBarIcon(
+                    icon: Icons.directions_bus_filled_outlined,
+                  )
                 ],
                 onChange: (index) => controller.moveToIndex(index),
               ),

@@ -123,7 +123,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                         ),
                       ),
                       Text(
-                        'Waiting',
+                        boxes.getBusStatusString(busses[index]),
                         style: TextStyle(
                           color: AppColors().darkBlue,
                           fontWeight: FontWeight.w400,

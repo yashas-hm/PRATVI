@@ -15,11 +15,11 @@ class BoxController extends GetxController {
   int plan = 0;
 
   String getBusStatusString(String bus) {
-    if (Descriptions.busStatus[0].contains(bus)) {
+    if (busStatus[Descriptions.busStatus[0]]!.contains(bus)) {
       return Descriptions.busStatus[0];
-    } else if (Descriptions.busStatus[1].contains(bus)) {
+    } else if (busStatus[Descriptions.busStatus[1]]!.contains(bus)) {
       return Descriptions.busStatus[1];
-    } else if (Descriptions.busStatus[2].contains(bus)) {
+    } else if (busStatus[Descriptions.busStatus[2]]!.contains(bus)) {
       return Descriptions.busStatus[2];
     }
     return 'waiting';
@@ -86,6 +86,10 @@ class BoxController extends GetxController {
 
   Future<void> getBusStatus() async {
     busStatus = await FirebaseHelper().getBusStatus(plan);
+  }
+
+  Future<void> changeBusStatus(String bus, int status,) async{
+    await FirebaseHelper().changeBusStatus(bus, status, plan);
   }
 
   Future<void> getRoutes() async {

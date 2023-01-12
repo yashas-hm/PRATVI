@@ -113,33 +113,41 @@ class _EventScreenState extends State<EventScreen>
                 begin: 0.0,
                 end: 1.0,
               ).animate(fadeAnim),
-              child: SizedBox(
+              child: Container(
+                margin: EdgeInsets.all(10.sp),
                 height: screenSize.height,
                 width: screenSize.width,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: Padding(
-                    padding: EdgeInsets.all(10.sp),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20.sp,
-                        ),
-                        Container(
-                          width: screenSize.width,
-                          alignment: Alignment.center,
-                          child: Text(
-                            Descriptions.event[widget.index],
-                            style: TextStyle(
-                              fontSize: 55.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 20.sp,
+                      ),
+                      Container(
+                        width: screenSize.width,
+                        alignment: Alignment.center,
+                        child: Text(
+                          Descriptions.event[widget.index],
+                          style: TextStyle(
+                            fontSize: 55.sp,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(
-                          height: 20.sp,
+                      ),
+                      SizedBox(
+                        height: 20.sp,
+                      ),
+                      Container(
+                        width: screenSize.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(15.sp),
                         ),
-                        Text(
+                        padding: EdgeInsets.all(10.sp),
+                        child: Text(
                           '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in ipsum et turpis venenatis volutpat. Etiam ac ligula quis orci consequat mattis. Suspendisse vestibulum leo augue, eget facilisis urna commodo sit amet. In mollis mauris ultrices, blandit mauris a, rhoncus dolor. Maecenas eleifend diam vehicula sollicitudin commodo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vitae ligula mi. Pellentesque condimentum odio id lorem dapibus, vitae sollicitudin nisl ultrices. Duis aliquet in leo eu dictum. Vivamus viverra ante ac eleifend venenatis. Integer in nulla nec urna malesuada sagittis malesuada nec erat. In hac habitasse platea dictumst. Duis efficitur elit libero, eget auctor tellus dictum nec.
 
                             Fusce rhoncus non tortor vitae ultricies. Duis vel suscipit nulla. Duis vestibulum erat pharetra eros pulvinar, nec scelerisque odio pretium. Vestibulum sem augue, elementum at blandit et, rhoncus vitae ex. Donec vel aliquam ex. Phasellus aliquam cursus ultrices. Vivamus efficitur mi turpis. Ut vehicula vitae ipsum a pharetra.
@@ -148,22 +156,25 @@ class _EventScreenState extends State<EventScreen>
 
                         Praesent varius lacinia neque quis laoreet. Fusce lacinia, justo sed faucibus sagittis, sem diam malesuada lacus, id maximus ligula odio non felis. Aenean venenatis sollicitudin nisl in vehicula. Aliquam vehicula felis in dapibus tempor. Sed dolor nisi, finibus id mollis ac, euismod vitae dolor. Cras eleifend lobortis diam, id molestie orci mattis nec. Vestibulum viverra nibh lacus, ornare venenatis ex molestie eget. Ut placerat viverra felis, a suscipit sapien sodales ut. Proin feugiat tortor nisl, a fringilla purus convallis sed. Phasellus felis neque, vestibulum finibus lectus ut, consectetur suscipit lacus. Cras dignissim nibh id nisi aliquam, sodales vehicula libero porttitor.''',
                           style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 18.sp),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18.sp,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        SizedBox(
-                          height: 20.sp,
+                      ),
+                      SizedBox(
+                        height: 20.sp,
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) => RouteItem(
+                          index: Descriptions.routeIndex[widget.index][index],
+                          tripIndex: index,
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (ctx, index) => RouteItem(
-                              index: Descriptions.routeIndex[widget.index]
-                                  [index]),
-                          itemCount:
-                              Descriptions.routeIndex[widget.index].length,
-                        ),
-                      ],
-                    ),
+                        itemCount: Descriptions.routeIndex[widget.index].length,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -179,8 +190,10 @@ class RouteItem extends StatelessWidget {
   RouteItem({
     super.key,
     required this.index,
+    required this.tripIndex,
   });
 
+  final int tripIndex;
   final int index;
   final controller = Get.find<BoxController>();
 
@@ -191,6 +204,11 @@ class RouteItem extends StatelessWidget {
 
     return Container(
       width: screenSize.width,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.7),
+        borderRadius: BorderRadius.circular(15.sp),
+      ),
+      padding: EdgeInsets.all(10.sp),
       margin: EdgeInsets.only(bottom: 10.sp),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -198,7 +216,7 @@ class RouteItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Trip ${index + 1}',
+            'Trip ${tripIndex + 1}',
             style: TextStyle(
               fontSize: 22.sp,
               fontWeight: FontWeight.w600,

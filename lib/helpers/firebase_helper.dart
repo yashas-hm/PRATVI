@@ -79,6 +79,29 @@ class FirebaseHelper {
     return statusMap;
   }
 
+  Future<void> changeBusStatus(String bus, int status, int plan) async {
+    final doc = firestoreInstance.collection('today').doc(plan.toString());
+    if(status==0){
+      doc.update({
+        Descriptions.busStatus[0]: FieldValue.arrayUnion([bus]),
+        Descriptions.busStatus[1]: FieldValue.arrayRemove([bus]),
+        Descriptions.busStatus[2]: FieldValue.arrayRemove([bus]),
+      });
+    }else if(status == 1){
+      doc.update({
+        Descriptions.busStatus[0]: FieldValue.arrayRemove([bus]),
+        Descriptions.busStatus[1]: FieldValue.arrayUnion([bus]),
+        Descriptions.busStatus[2]: FieldValue.arrayRemove([bus]),
+      });
+    }else if(status==2){
+      doc.update({
+        Descriptions.busStatus[0]: FieldValue.arrayRemove([bus]),
+        Descriptions.busStatus[1]: FieldValue.arrayRemove([bus]),
+        Descriptions.busStatus[2]: FieldValue.arrayUnion([bus]),
+      });
+    }
+  }
+
   Future<Map<String, List<Map<String, String>>>> getBusFamData(int plan) async {
     final doc =
         await firestoreInstance.collection('today').doc(plan.toString()).get();
@@ -86,14 +109,16 @@ class FirebaseHelper {
     if (doc.data() != null) {
       final data = doc.data()!;
       for (var i in data.keys.toList()) {
-        final l = <Map<String, String>>[];
-        for (var j in data[i]) {
-          l.add({
-            'name': j['name'],
-            'number': j['number'],
-          });
+        if(!Descriptions.busStatus.contains(i)){
+          final l = <Map<String, String>>[];
+          for (var j in data[i]) {
+            l.add({
+              'name': j['name'],
+              'number': j['number'],
+            });
+          }
+          list[i] = l;
         }
-        list[i] = l;
       }
     }
     return list;
