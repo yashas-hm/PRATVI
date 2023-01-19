@@ -67,7 +67,7 @@ class EventItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(18.sp),
           border: Border.all(
             width: 2.sp,
-            color: AppColors().darkBlue,
+            color: AppColors().darkGreen,
           ),
         ),
         child: Text(

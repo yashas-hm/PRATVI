@@ -24,7 +24,7 @@ class SnackBarHelper {
       ),
       borderRadius: 20.sp,
       borderWidth: 1.sp,
-      borderColor: AppColors().darkBlue,
+      borderColor: AppColors().darkGreen,
       margin: EdgeInsets.all(15.sp),
       padding: EdgeInsets.all(13.sp),
       backgroundColor: Colors.white,
@@ -33,7 +33,7 @@ class SnackBarHelper {
         padding: EdgeInsets.all(13.sp),
         child: Icon(
           Icons.check_circle_outline_rounded,
-          color: AppColors().darkBlue,
+          color: AppColors().darkGreen,
           size: 45.sp,
         ),
       ),
@@ -110,7 +110,7 @@ class SnackBarHelper {
               child: Text(
                 actionText,
                 style: TextStyle(
-                  color: AppColors().darkBlue,
+                  color: AppColors().darkGreen,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.normal,
                 ),

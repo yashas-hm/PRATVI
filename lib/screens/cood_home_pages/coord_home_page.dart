@@ -80,7 +80,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                     Text(
                       'Bus        ',
                       style: TextStyle(
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                         fontWeight: FontWeight.w400,
                         fontSize: 16.sp,
                       ),
@@ -88,7 +88,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                     Text(
                       'Status',
                       style: TextStyle(
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                         fontWeight: FontWeight.w400,
                         fontSize: 16.sp,
                       ),
@@ -96,7 +96,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                     Text(
                       'Checkins',
                       style: TextStyle(
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                         fontWeight: FontWeight.w400,
                         fontSize: 16.sp,
                       ),
@@ -117,7 +117,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                       Text(
                         'Bus ${index + 1}',
                         style: TextStyle(
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                           fontWeight: FontWeight.w400,
                           fontSize: 16.sp,
                         ),
@@ -125,7 +125,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                       Text(
                         boxes.getBusStatusString(busses[index]),
                         style: TextStyle(
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                           fontWeight: FontWeight.w400,
                           fontSize: 16.sp,
                         ),
@@ -133,7 +133,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                       Text(
                         '  ${boxes.busData[busses[index]]!.length}       ',
                         style: TextStyle(
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                           fontWeight: FontWeight.w400,
                           fontSize: 16.sp,
                         ),
@@ -150,7 +150,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                   child: Text(
                     'Select bus registration number:',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
@@ -184,21 +184,21 @@ class _CoordHomePageState extends State<CoordHomePage> {
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                   ),
@@ -215,21 +215,21 @@ class _CoordHomePageState extends State<CoordHomePage> {
                         borderRadius: BorderRadius.circular(10.sp),
                         borderSide: BorderSide(
                           width: 1.sp,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.sp),
                         borderSide: BorderSide(
                           width: 1.sp,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.sp),
                         borderSide: BorderSide(
                           width: 1.sp,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                       ),
                       labelText: 'Select Family Member'),
@@ -303,7 +303,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                         height: 40.sp,
                         width: 150.sp,
                         decoration: BoxDecoration(
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                           borderRadius: BorderRadius.circular(5.sp),
                         ),
                         alignment: Alignment.center,

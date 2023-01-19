@@ -97,7 +97,7 @@ class BusItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[1]
                     ? Colors.blueGrey
-                    : AppColors().darkBlue,
+                    : AppColors().darkGreen,
               ),
               alignment: Alignment.center,
               child: Text(
@@ -123,7 +123,7 @@ class BusItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[2]
                     ? Colors.blueGrey
-                    : AppColors().darkBlue,
+                    : AppColors().darkGreen,
               ),
               alignment: Alignment.center,
               child: Text(
@@ -149,7 +149,7 @@ class BusItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[0]
                     ? Colors.blueGrey
-                    : AppColors().darkBlue,
+                    : AppColors().darkGreen,
               ),
               alignment: Alignment.center,
               child: Text(

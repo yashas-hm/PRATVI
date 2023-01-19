@@ -67,45 +67,45 @@ class _CoordListPageState extends State<CoordListPage> {
                       autofocus: false,
                       style: TextStyle(
                         fontSize: 15.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                       decoration: InputDecoration(
                         labelText: 'Guest Search',
                         labelStyle: TextStyle(
                           fontSize: 15.sp,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                         counterText: '',
                         hintText: 'Search guest',
                         hintStyle: TextStyle(
                           fontSize: 15.sp,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.sp),
                           borderSide: BorderSide(
                             width: 1.sp,
-                            color: AppColors().darkBlue,
+                            color: AppColors().darkGreen,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.sp),
                           borderSide: BorderSide(
                             width: 1.sp,
-                            color: AppColors().darkBlue,
+                            color: AppColors().darkGreen,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.sp),
                           borderSide: BorderSide(
                             width: 1.sp,
-                            color: AppColors().darkBlue,
+                            color: AppColors().darkGreen,
                           ),
                         ),
                         fillColor: Colors.white,
                         filled: true,
                       ),
-                      cursorColor: AppColors().darkBlue,
+                      cursorColor: AppColors().darkGreen,
                       maxLength: 30,
                       maxLines: 1,
                     ),
@@ -135,7 +135,7 @@ class _CoordListPageState extends State<CoordListPage> {
                             style: TextStyle(
                               fontSize: 15.sp,
                               decoration: TextDecoration.none,
-                              color: AppColors().darkBlue,
+                              color: AppColors().darkGreen,
                             ),
                           ),
                           list.contains(guest['name']!)
@@ -144,7 +144,7 @@ class _CoordListPageState extends State<CoordListPage> {
                                   style: TextStyle(
                                     fontSize: 15.sp,
                                     decoration: TextDecoration.none,
-                                    color: AppColors().darkBlue,
+                                    color: AppColors().darkGreen,
                                   ),
                                 )
                               : Link(
@@ -158,7 +158,7 @@ class _CoordListPageState extends State<CoordListPage> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(8.sp)),
-                                        color: AppColors().darkBlue,
+                                        color: AppColors().darkGreen,
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
@@ -185,7 +185,7 @@ class _CoordListPageState extends State<CoordListPage> {
                   child: Text(
                     'Select bus registration number:',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
@@ -219,21 +219,21 @@ class _CoordListPageState extends State<CoordListPage> {
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                   ),
@@ -261,7 +261,7 @@ class _CoordListPageState extends State<CoordListPage> {
                         style: TextStyle(
                           fontSize: 15.sp,
                           decoration: TextDecoration.none,
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                       ),
                     ),
@@ -274,7 +274,7 @@ class _CoordListPageState extends State<CoordListPage> {
                   child: Text(
                     'Guests not checked in',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
@@ -305,7 +305,7 @@ class _CoordListPageState extends State<CoordListPage> {
                             style: TextStyle(
                               fontSize: 15.sp,
                               decoration: TextDecoration.none,
-                              color: AppColors().darkBlue,
+                              color: AppColors().darkGreen,
                             ),
                           ),
                           Link(
@@ -320,7 +320,7 @@ class _CoordListPageState extends State<CoordListPage> {
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.sp)),
-                                  color: AppColors().darkBlue,
+                                  color: AppColors().darkGreen,
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(

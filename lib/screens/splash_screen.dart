@@ -7,6 +7,7 @@ import 'package:pratvi/controller/controller.dart';
 import 'package:pratvi/core/app_constants.dart';
 import 'package:pratvi/core/color_constants.dart';
 import 'package:pratvi/core/shared_preferences.dart';
+import 'package:pratvi/helpers/app_helpers.dart';
 import 'package:pratvi/screens/cood_home_screen.dart';
 import 'package:pratvi/screens/home_screen.dart';
 import 'package:pratvi/screens/login_screen.dart';
@@ -36,13 +37,15 @@ class _SplashScreenState extends State<SplashScreen>
     _zoomIn = Tween<double>(begin: 1 / 5, end: 1).animate(animation);
 
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: AppColors().purple));
+        SystemUiOverlayStyle(statusBarColor: AppColors().pink));
     animation.addListener(() async {
       if (animation.isCompleted) {
         setState(() {
           loading = true;
         });
         Future.delayed(const Duration(milliseconds: 500), () async {
+          await AppHelpers.initialise();
+
           final controller = Get.find<Controller>();
           await controller.initialise();
           final boxController = Get.find<BoxController>();
@@ -50,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
           await boxController.getBusData();
 
           SystemChrome.setSystemUIOverlayStyle(
-              SystemUiOverlayStyle(statusBarColor: AppColors().lightBlue));
+              SystemUiOverlayStyle(statusBarColor: AppColors().lightGreen));
           if (!controller.loggedIn) {
             Get.off(
                   () => const LoginScreen(),
@@ -87,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
         height: screenSize.height,
         width: screenSize.width,
         padding: EdgeInsets.all(20.sp),
-        color: AppColors().purple,
+        color: AppColors().pink,
         child: Stack(
           children: [
             Center(

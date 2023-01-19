@@ -24,8 +24,11 @@ class _EventScreenState extends State<EventScreen>
     with TickerProviderStateMixin {
   late final AnimationController rotationAnim;
   late final AnimationController fadeAnim;
+  final controller = Get.find<BoxController>();
+  final scrollController = ScrollController();
+  bool more = true;
+  double scroll = 0.sp;
 
-  // final a = Get.find<Controller>();
   @override
   void initState() {
     rotationAnim = AnimationController(
@@ -37,6 +40,20 @@ class _EventScreenState extends State<EventScreen>
       vsync: this,
       duration: const Duration(seconds: 3),
     );
+    scrollController.addListener(() {
+      scroll = scrollController.offset;
+
+      if (scrollController.offset >=
+          scrollController.position.maxScrollExtent) {
+        setState(() {
+          more = false;
+        });
+      } else {
+        setState(() {
+          more = true;
+        });
+      }
+    });
     fadeAnim.forward();
     rotationAnim.repeat();
     super.initState();
@@ -52,6 +69,7 @@ class _EventScreenState extends State<EventScreen>
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final route = controller.routesBox.values.toList();
 
     return Scaffold(
       appBar: null,
@@ -119,6 +137,7 @@ class _EventScreenState extends State<EventScreen>
                 width: screenSize.width,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
+                  controller: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -134,9 +153,41 @@ class _EventScreenState extends State<EventScreen>
                           style: TextStyle(
                             fontSize: 55.sp,
                             fontWeight: FontWeight.w600,
+                            fontFamily: 'script',
                           ),
                         ),
                       ),
+                      if (widget.index != 0)
+                        Container(
+                          width: screenSize.width,
+                          alignment: Alignment.center,
+                          child: Text(
+                            route[Descriptions.routeIndex[widget.index].first]
+                                .date,
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'script',
+                            ),
+                          ),
+                        ),
+                      SizedBox(
+                        height: 10.sp,
+                      ),
+                      if (widget.index != 0)
+                        Container(
+                          width: screenSize.width,
+                          alignment: Alignment.center,
+                          child: Text(
+                            route[Descriptions.routeIndex[widget.index].first]
+                                .time,
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'script',
+                            ),
+                          ),
+                        ),
                       SizedBox(
                         height: 20.sp,
                       ),
@@ -148,37 +199,90 @@ class _EventScreenState extends State<EventScreen>
                         ),
                         padding: EdgeInsets.all(10.sp),
                         child: Text(
-                          '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in ipsum et turpis venenatis volutpat. Etiam ac ligula quis orci consequat mattis. Suspendisse vestibulum leo augue, eget facilisis urna commodo sit amet. In mollis mauris ultrices, blandit mauris a, rhoncus dolor. Maecenas eleifend diam vehicula sollicitudin commodo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vitae ligula mi. Pellentesque condimentum odio id lorem dapibus, vitae sollicitudin nisl ultrices. Duis aliquet in leo eu dictum. Vivamus viverra ante ac eleifend venenatis. Integer in nulla nec urna malesuada sagittis malesuada nec erat. In hac habitasse platea dictumst. Duis efficitur elit libero, eget auctor tellus dictum nec.
-
-                            Fusce rhoncus non tortor vitae ultricies. Duis vel suscipit nulla. Duis vestibulum erat pharetra eros pulvinar, nec scelerisque odio pretium. Vestibulum sem augue, elementum at blandit et, rhoncus vitae ex. Donec vel aliquam ex. Phasellus aliquam cursus ultrices. Vivamus efficitur mi turpis. Ut vehicula vitae ipsum a pharetra.
-
-                            Mauris felis metus, dignissim sit amet elit at, interdum blandit neque. Aliquam placerat felis a turpis rhoncus, a condimentum diam sagittis. Nulla tempor nibh nec tortor gravida, quis efficitur lorem finibus. Suspendisse hendrerit ipsum ac ante congue, vitae consequat quam pharetra. In sed ultrices neque, ac sagittis nulla. Donec quis eleifend arcu, quis auctor lorem. Cras dictum dapibus lectus, vel viverra urna efficitur placerat. Donec tempus mollis eros nec lacinia. Sed porta magna nunc, vitae tristique mi faucibus at. Duis rhoncus, sapien lacinia maximus placerat, augue sapien varius risus, dapibus dapibus felis elit vel justo. Etiam quis vestibulum felis. Vestibulum sed pharetra diam.
-
-                        Praesent varius lacinia neque quis laoreet. Fusce lacinia, justo sed faucibus sagittis, sem diam malesuada lacus, id maximus ligula odio non felis. Aenean venenatis sollicitudin nisl in vehicula. Aliquam vehicula felis in dapibus tempor. Sed dolor nisi, finibus id mollis ac, euismod vitae dolor. Cras eleifend lobortis diam, id molestie orci mattis nec. Vestibulum viverra nibh lacus, ornare venenatis ex molestie eget. Ut placerat viverra felis, a suscipit sapien sodales ut. Proin feugiat tortor nisl, a fringilla purus convallis sed. Phasellus felis neque, vestibulum finibus lectus ut, consectetur suscipit lacus. Cras dignissim nibh id nisi aliquam, sodales vehicula libero porttitor.''',
+                          Descriptions.eventDescription[widget.index],
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 18.sp,
+                            fontSize: 20.sp,
+                            fontFamily: 'script',
                           ),
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      SizedBox(
-                        height: 20.sp,
-                      ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) => RouteItem(
-                          index: Descriptions.routeIndex[widget.index][index],
-                          tripIndex: index,
+                      if (Descriptions.routeIndex[widget.index].first <= 6)
+                        SizedBox(
+                          height: 20.sp,
                         ),
-                        itemCount: Descriptions.routeIndex[widget.index].length,
-                      ),
+                      if (Descriptions.routeIndex[widget.index].first <= 6)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (ctx, index) => RouteItem(
+                            index: Descriptions.routeIndex[widget.index][index],
+                            tripIndex: index,
+                          ),
+                          itemCount:
+                              Descriptions.routeIndex[widget.index].length,
+                        ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () => Get.back(result: false),
+                child: Container(
+                  height: 60.sp,
+                  width: 60.sp,
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    size: 40.sp,
+                    color: AppColors().darkGreen,
+                  ),
+                ),
+              ),
+            ),
+            if (more)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () => scrollController.animateTo(
+                    scroll += 180.sp,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50.sp),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8.sp, horizontal: 15.sp),
+                    margin: EdgeInsets.all(10.sp),
+                    alignment: Alignment.center,
+                    height: 40.sp,
+                    width: 100.sp,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.arrow_downward_rounded,
+                          size: 20.sp,
+                          color: AppColors().darkGreen,
+                        ),
+                        Text(
+                          'More',
+                          style: TextStyle(
+                              fontSize: 15.sp, fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -266,26 +370,28 @@ class RouteItem extends StatelessWidget {
             height: 10.sp,
           ),
           Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                  onTap: () => Get.to(() => const TodayPage()),
-                  child: Container(
-                    height: 40.sp,
-                    width: 150.sp,
-                    decoration: BoxDecoration(
-                      color: AppColors().darkBlue,
-                      borderRadius: BorderRadius.circular(5.sp),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Check In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ))),
+            alignment: Alignment.center,
+            child: InkWell(
+              onTap: () => Get.to(() => const TodayPage()),
+              child: Container(
+                height: 40.sp,
+                width: 150.sp,
+                decoration: BoxDecoration(
+                  color: AppColors().darkGreen,
+                  borderRadius: BorderRadius.circular(5.sp),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  'Check In',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -59,26 +59,26 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(
                 labelText: 'Phone Number',
                 counterText: '',
-                labelStyle: TextStyle(color: AppColors().darkBlue),
+                labelStyle: TextStyle(color: AppColors().darkGreen),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
                   borderSide: BorderSide(
                     width: 2.sp,
-                    color: AppColors().darkBlue,
+                    color: AppColors().darkGreen,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
                   borderSide: BorderSide(
                     width: 2.sp,
-                    color: AppColors().darkBlue,
+                    color: AppColors().darkGreen,
                   ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
                   borderSide: BorderSide(
                     width: 2.sp,
-                    color: AppColors().darkBlue,
+                    color: AppColors().darkGreen,
                   ),
                 ),
                 errorBorder: OutlineInputBorder(
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               style: TextStyle(
                 fontSize: 18.sp,
-                color: AppColors().darkBlue,
+                color: AppColors().darkGreen,
               ),
               keyboardType: TextInputType.number,
               maxLines: 1,
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(13.sp),
-                    color: login ? Colors.black38 : AppColors().darkBlue,
+                    color: login ? Colors.black38 : AppColors().darkGreen,
                   ),
                   child: Material(
                     color: Colors.transparent,

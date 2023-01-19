@@ -60,7 +60,7 @@ class _TodayPageState extends State<TodayPage> {
                   child: Text(
                     'Trip ${boxes.plan}',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w700,
                       fontSize: 22.sp,
                     ),
@@ -74,7 +74,7 @@ class _TodayPageState extends State<TodayPage> {
                   child: Text(
                     route.trip,
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w600,
                       fontSize: 20.sp,
                     ),
@@ -88,7 +88,7 @@ class _TodayPageState extends State<TodayPage> {
                   child: Text(
                     route.details,
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w500,
                       fontSize: 18.sp,
                     ),
@@ -102,7 +102,7 @@ class _TodayPageState extends State<TodayPage> {
                   child: Text(
                     'Select family members to checkIn:',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
@@ -136,7 +136,7 @@ class _TodayPageState extends State<TodayPage> {
                   child: Text(
                     'Select bus registration number:',
                     style: TextStyle(
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
@@ -168,21 +168,21 @@ class _TodayPageState extends State<TodayPage> {
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.sp),
                       borderSide: BorderSide(
                         width: 1.sp,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                   ),
@@ -222,7 +222,7 @@ class _TodayPageState extends State<TodayPage> {
                         height: 40.sp,
                         width: 150.sp,
                         decoration: BoxDecoration(
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                           borderRadius: BorderRadius.circular(5.sp),
                         ),
                         alignment: Alignment.center,
@@ -296,7 +296,7 @@ class _FamilyRadioItemState extends State<FamilyRadioItem> {
           Text(
             widget.name,
             style: TextStyle(
-              color: AppColors().darkBlue,
+              color: AppColors().darkGreen,
               fontWeight: FontWeight.w400,
               fontSize: 16.sp,
             ),
@@ -313,7 +313,7 @@ class _FamilyRadioItemState extends State<FamilyRadioItem> {
               width: 30.sp,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: AppColors().darkBlue,
+                  color: AppColors().darkGreen,
                   width: 2.sp,
                 ),
                 borderRadius: BorderRadius.circular(5.sp),
@@ -322,7 +322,7 @@ class _FamilyRadioItemState extends State<FamilyRadioItem> {
               child: check
                   ? Icon(
                       Icons.check_rounded,
-                      color: AppColors().darkBlue,
+                      color: AppColors().darkGreen,
                     )
                   : null,
             ),

@@ -38,7 +38,7 @@ class FamilyPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                   ),
@@ -53,7 +53,7 @@ class FamilyPage extends StatelessWidget {
                         margin: EdgeInsets.only(left: 5.sp),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(8.sp)),
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                         alignment: Alignment.center,
                         child: Text(
@@ -84,7 +84,7 @@ class FamilyPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w600,
-                        color: AppColors().darkBlue,
+                        color: AppColors().darkGreen,
                       ),
                     ),
                   ),
@@ -99,7 +99,7 @@ class FamilyPage extends StatelessWidget {
                         margin: EdgeInsets.only(left: 5.sp),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(8.sp)),
-                          color: AppColors().darkBlue,
+                          color: AppColors().darkGreen,
                         ),
                         alignment: Alignment.center,
                         child: Text(
@@ -125,7 +125,7 @@ class FamilyPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w600,
-                  color: AppColors().darkBlue,
+                  color: AppColors().darkGreen,
                 ),
               ),
             ),
@@ -174,7 +174,7 @@ class _FamilyItemState extends State<FamilyItem> {
       onTap: () => setState(() {
         more = !more;
       }),
-      splashColor: AppColors().darkBlue,
+      splashColor: AppColors().darkGreen,
       child: Container(
         width: screenSize.width,
         padding: EdgeInsets.all(10.sp),
@@ -184,7 +184,7 @@ class _FamilyItemState extends State<FamilyItem> {
           borderRadius: BorderRadius.circular(18.sp),
           border: Border.all(
             width: 2.sp,
-            color: AppColors().darkBlue,
+            color: AppColors().darkGreen,
           ),
         ),
         child: Column(
@@ -212,7 +212,7 @@ class _FamilyItemState extends State<FamilyItem> {
                       ? Icons.keyboard_arrow_up_rounded
                       : Icons.keyboard_arrow_down_rounded,
                   size: 30.sp,
-                  color: AppColors().darkBlue,
+                  color: AppColors().darkGreen,
                 ),
               ],
             ),
@@ -228,7 +228,7 @@ class _FamilyItemState extends State<FamilyItem> {
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
-                    color: AppColors().darkBlue,
+                    color: AppColors().darkGreen,
                   ),
                 ),
               ),
@@ -244,7 +244,7 @@ class _FamilyItemState extends State<FamilyItem> {
                   style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
-                    color: AppColors().darkBlue,
+                    color: AppColors().darkGreen,
                   ),
                 ),
               ),

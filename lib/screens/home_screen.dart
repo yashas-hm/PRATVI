@@ -50,8 +50,8 @@ class HomeScreen extends StatelessWidget {
                 defaultIndex: controller.index,
                 animationFactor: 0.5,
                 style: FluidNavBarStyle(
-                  iconBackgroundColor: AppColors().lightBlue,
-                  barBackgroundColor: AppColors().lightBlue,
+                  iconBackgroundColor: AppColors().lightGreen,
+                  barBackgroundColor: AppColors().lightGreen,
                   iconSelectedForegroundColor: AppColors().pink,
                   iconUnselectedForegroundColor: AppColors().pink,
                 ),

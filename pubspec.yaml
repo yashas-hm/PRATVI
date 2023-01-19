@@ -68,6 +68,12 @@ flutter:
           weight: 600
         - asset: assets/fonts/montserrat_700.ttf
           weight: 700
+    - family: script
+      fonts:
+        - asset: assets/fonts/script_500.ttf
+          weight: 500
+        - asset: assets/fonts/script_600.ttf
+          weight: 600
 
   assets:
     - assets/
