@@ -4,15 +4,13 @@ import 'package:get/get.dart';
 import 'package:pratvi/core/app_constants.dart';
 import 'package:pratvi/core/color_constants.dart';
 import 'package:pratvi/core/description_data.dart';
+import 'package:pratvi/screens/home_screen.dart';
 import 'package:resize/resize.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({
     Key? key,
-    required this.index,
   }) : super(key: key);
-
-  final int index;
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -20,15 +18,15 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen>
     with TickerProviderStateMixin {
-  late final AnimationController rotationAnim;
-  late final AnimationController fadeAnim;
+  late final AnimationController rotationAnimController;
+  late final AnimationController animController;
   final scrollController = ScrollController();
   bool more = true;
   double scroll = 0.sp;
 
   @override
   void initState() {
-    rotationAnim = AnimationController(
+    rotationAnimController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 20),
     );
@@ -48,19 +46,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       }
     });
 
-    fadeAnim = AnimationController(
+    animController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
     );
-    fadeAnim.forward();
-    rotationAnim.repeat();
+    animController.forward();
+    rotationAnimController.repeat();
     super.initState();
   }
 
   @override
   void dispose() {
-    rotationAnim.dispose();
-    fadeAnim.dispose();
+    rotationAnimController.dispose();
+    animController.dispose();
     super.dispose();
   }
 
@@ -84,12 +82,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                 opacity: Tween(
                   begin: 0.0,
                   end: 1.0,
-                ).animate(fadeAnim),
+                ).animate(animController),
                 child: RotationTransition(
                   turns: Tween(
                     begin: 1.0,
                     end: 0.0,
-                  ).animate(rotationAnim),
+                  ).animate(rotationAnimController),
                   child: SvgPicture.asset(
                     AppConstants.mandala2,
                     height: screenSize.height / 3,
@@ -109,12 +107,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                 opacity: Tween(
                   begin: 0.0,
                   end: 1.0,
-                ).animate(fadeAnim),
+                ).animate(animController),
                 child: RotationTransition(
                   turns: Tween(
                     begin: 0.0,
                     end: 1.0,
-                  ).animate(rotationAnim),
+                  ).animate(rotationAnimController),
                   child: SvgPicture.asset(
                     AppConstants.mandala1,
                     height: screenSize.height / 2,
@@ -127,13 +125,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
               opacity: Tween(
                 begin: 0.0,
                 end: 1.0,
-              ).animate(fadeAnim),
+              ).animate(animController),
               child: Container(
                 margin: EdgeInsets.all(10.sp),
                 height: screenSize.height,
                 width: screenSize.width,
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                  controller: scrollController,
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -141,16 +141,34 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                       SizedBox(
                         height: 20.sp,
                       ),
+                      ScaleTransition(
+                        scale: Tween(
+                          begin: 0.0,
+                          end: 1.0,
+                        ).animate(animController),
+                        child: Container(
+                          height: 150.sp,
+                          width: 150.sp,
+                          padding: EdgeInsets.all(10.sp),
+                          child: SvgPicture.asset(
+                            AppConstants.appLogo,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.sp,
+                      ),
                       Container(
                         width: screenSize.width,
                         alignment: Alignment.center,
                         child: Text(
-                          Descriptions.event[widget.index],
+                          'Welcome to Rutvi & Pranay\'s Wedding',
                           style: TextStyle(
                             fontSize: 55.sp,
                             fontWeight: FontWeight.w600,
                             fontFamily: 'script',
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(
@@ -164,7 +182,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                         ),
                         padding: EdgeInsets.all(10.sp),
                         child: Text(
-                          Descriptions.eventDescription[widget.index],
+                          Descriptions.eventDescription.last,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 20.sp,
@@ -179,60 +197,49 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
               ),
             ),
             Align(
-              alignment: Alignment.topLeft,
-              child: InkWell(
-                onTap: () => Get.back(result: false),
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: more
+                    ? () => scrollController.animateTo(
+                          scroll += 180.sp,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        )
+                    : () => Get.offAll(() => HomeScreen()),
                 child: Container(
-                  height: 60.sp,
-                  width: 60.sp,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50.sp),
+                  ),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.sp, horizontal: 15.sp),
+                  margin: EdgeInsets.all(10.sp),
                   alignment: Alignment.center,
-                  child: Icon(
-                    Icons.arrow_back_rounded,
-                    size: 40.sp,
-                    color: AppColors().darkGreen,
-                  ),
-                ),
-              ),
-            ),
-            if (more)
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: GestureDetector(
-                  onTap: () => scrollController.animateTo(
-                    scroll += 180.sp,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50.sp),
-                    ),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 8.sp, horizontal: 15.sp),
-                    margin: EdgeInsets.all(10.sp),
-                    alignment: Alignment.center,
-                    height: 40.sp,
-                    width: 100.sp,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                  height: 40.sp,
+                  width: 100.sp,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      if (more)
                         Icon(
                           Icons.arrow_downward_rounded,
                           size: 20.sp,
                           color: AppColors().darkGreen,
                         ),
-                        Text(
-                          'More',
+                      Expanded(
+                        child: Text(
+                          more ? 'More' : 'Next',
                           style: TextStyle(
-                              fontSize: 15.sp, fontWeight: FontWeight.w600),
+                              fontSize: 15.sp, fontWeight: FontWeight.w600,),
+                          textAlign: TextAlign.center,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
           ],
         ),
       ),

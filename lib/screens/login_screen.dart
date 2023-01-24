@@ -8,6 +8,7 @@ import 'package:pratvi/core/shared_preferences.dart';
 import 'package:pratvi/helpers/firebase_helper.dart';
 import 'package:pratvi/screens/cood_home_screen.dart';
 import 'package:pratvi/screens/home_screen.dart';
+import 'package:pratvi/screens/onboarding_screen.dart';
 import 'package:pratvi/widgets/custom_appbar.dart';
 import 'package:resize/resize.dart';
 
@@ -135,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         });
 
                         if (result) {
-                          Get.off(() => HomeScreen());
+                          Get.off(() => const OnBoardingScreen());
                         }
                       },
                       splashColor: Colors.white,
