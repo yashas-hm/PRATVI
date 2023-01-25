@@ -8,7 +8,7 @@ import 'package:pratvi/core/app_constants.dart';
 import 'package:pratvi/core/color_constants.dart';
 import 'package:pratvi/core/shared_preferences.dart';
 import 'package:pratvi/helpers/app_helpers.dart';
-import 'package:pratvi/screens/cood_home_screen.dart';
+import 'package:pratvi/screens/coord_home_screen.dart';
 import 'package:pratvi/screens/home_screen.dart';
 import 'package:pratvi/screens/login_screen.dart';
 import 'package:resize/resize.dart';
