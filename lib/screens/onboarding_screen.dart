@@ -180,7 +180,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           color: Colors.white.withOpacity(0.7),
                           borderRadius: BorderRadius.circular(15.sp),
                         ),
-                        padding: EdgeInsets.all(10.sp),
+                        padding: EdgeInsets.only(
+                          top: 10.sp,
+                          left: 10.sp,
+                          right: 10.sp,
+                          bottom: 50.sp,
+                        ),
                         child: Text(
                           Descriptions.eventDescription.last,
                           style: TextStyle(
@@ -231,7 +236,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                         child: Text(
                           more ? 'More' : 'Next',
                           style: TextStyle(
-                              fontSize: 15.sp, fontWeight: FontWeight.w600,),
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                       ),

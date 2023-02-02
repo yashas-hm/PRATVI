@@ -14,7 +14,7 @@ class Descriptions {
     'Haldi',
     'Baraat',
     'Shaadi',
-    'Back Home'
+    'Thank You'
   ];
 
   static List<String> busStatus = [
@@ -49,7 +49,21 @@ Massaging the ubtan onto the skin relaxes the body and takes the mind off the te
 The colour yellow is indeed associated with new beginnings, peace and happiness.''',
     '''Baraat Text''',
     '''Shaadi Text''',
-    '''Back Home Text''',
-    '''Welcome Text''',
+    '''We would like to thank you for sharing in our wedding celebrations.
+    
+    We are grateful for your presence, warm wishes, and blessings. Your presence at the wedding has added so much love to Rutvi and Pranay's special day.
+    
+    Thank you for being there with us!
+    
+    Warm Regards\nDiti and Trushit Chokshi''',
+    '''We are thrilled that you could make the trip here to celebrate the joy of Rutvi and Pranay's wedding!
+    
+    We are so fortunate to have your love and support.
+    
+    Thank you so much for being a part of this weekend and we hope you enjoy your stay.
+    
+    Let's have the best time together as Ruts gets Pranked!
+    
+    Warm Regards\nDiti and Trushit Chokshi''',
   ];
 }

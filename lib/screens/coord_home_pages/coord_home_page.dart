@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:get/get.dart';
 import 'package:pratvi/controller/box_controller.dart';
 import 'package:pratvi/core/color_constants.dart';
@@ -7,6 +6,7 @@ import 'package:pratvi/core/shared_preferences.dart';
 import 'package:pratvi/helpers/firebase_helper.dart';
 import 'package:pratvi/helpers/snackbar_helper.dart';
 import 'package:pratvi/screens/login_screen.dart';
+import 'package:pratvi/widgets/input_chip/chips_input.dart';
 import 'package:resize/resize.dart';
 
 class CoordHomePage extends StatefulWidget {

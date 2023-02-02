@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.17.0
+  intl: ^0.18.0
   flutter_svg: ^1.1.5
   url_launcher: ^6.1.4
   shared_preferences: ^2.0.15
@@ -22,10 +22,9 @@ dependencies:
   get: ^4.6.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  flutter_chips_input: ^2.0.0
   flutter_typeahead: ^4.1.1
 
-  #INFO: firebase dependencies
+  #INFO firebase dependencies
   firebase_crashlytics: ^3.0.6
   firebase_core: ^2.3.0
   cloud_firestore: ^4.1.0

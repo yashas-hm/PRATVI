@@ -41,6 +41,16 @@ class _EventScreenState extends State<EventScreen>
       duration: const Duration(seconds: 3),
     );
 
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+          if (scrollController.initialScrollOffset >=
+              scrollController.position.maxScrollExtent)
+            {
+              setState(() {
+                more = false;
+              })
+            }
+        });
+
     scrollController.addListener(() {
       scroll = scrollController.offset;
 
@@ -70,9 +80,7 @@ class _EventScreenState extends State<EventScreen>
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery
-        .of(context)
-        .size;
+    final screenSize = MediaQuery.of(context).size;
     final route = controller.routesBox.values.toList();
 
     return Scaffold(
@@ -140,7 +148,8 @@ class _EventScreenState extends State<EventScreen>
                 height: screenSize.height,
                 width: screenSize.width,
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
                   controller: scrollController,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -218,14 +227,12 @@ class _EventScreenState extends State<EventScreen>
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (ctx, index) =>
-                              RouteItem(
-                                index: Descriptions.routeIndex[widget
-                                    .index][index],
-                                tripIndex: index,
-                              ),
+                          itemBuilder: (ctx, index) => RouteItem(
+                            index: Descriptions.routeIndex[widget.index][index],
+                            tripIndex: index,
+                          ),
                           itemCount:
-                          Descriptions.routeIndex[widget.index].length,
+                              Descriptions.routeIndex[widget.index].length,
                         ),
                     ],
                   ),
@@ -252,19 +259,18 @@ class _EventScreenState extends State<EventScreen>
               Align(
                 alignment: Alignment.bottomCenter,
                 child: GestureDetector(
-                  onTap: () =>
-                      scrollController.animateTo(
-                        scroll += 180.sp,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      ),
+                  onTap: () => scrollController.animateTo(
+                    scroll += 180.sp,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn,
+                  ),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50.sp),
                     ),
                     padding:
-                    EdgeInsets.symmetric(vertical: 8.sp, horizontal: 15.sp),
+                        EdgeInsets.symmetric(vertical: 8.sp, horizontal: 15.sp),
                     margin: EdgeInsets.all(10.sp),
                     alignment: Alignment.center,
                     height: 40.sp,
@@ -296,12 +302,10 @@ class _EventScreenState extends State<EventScreen>
 }
 
 class RouteItem extends StatelessWidget {
-  RouteItem
-
-  ({
-  super.key,
-  required this.index,
-  required this.tripIndex,
+  RouteItem({
+    super.key,
+    required this.index,
+    required this.tripIndex,
   });
 
   final int tripIndex;
@@ -311,9 +315,7 @@ class RouteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final route = controller.routesBox.values.toList()[index];
-    final screenSize = MediaQuery
-        .of(context)
-        .size;
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
       width: screenSize.width,
