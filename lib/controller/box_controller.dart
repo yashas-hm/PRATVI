@@ -39,9 +39,12 @@ class BoxController extends GetxController {
     if (cacheControl.isEmpty ||
         !cacheControl.containsKey('routes') ||
         !cacheControl.containsKey('bus') ||
+        !cacheControl.containsKey('coordinators') ||
         routesBox.isEmpty) {
       await getRoutes();
       await getBusses();
+      await getCoord();
+      cacheControl.put('coordinators', data['coordinators']);
       cacheControl.put('routes', data['routes']);
       cacheControl.put('bus', data['bus']);
     }
@@ -57,6 +60,12 @@ class BoxController extends GetxController {
       cacheControl.put('bus', data['bus']);
       await getBusses();
     }
+
+    if (cacheControl.get('coordinators')!.compareTo(data['coordinators']) < 0) {
+      cacheControl.delete('coordinators');
+      cacheControl.put('coordinators', data['coordinators']);
+      await getCoord();
+    }
   }
 
   Future<void> busFamData() async {
@@ -66,6 +75,18 @@ class BoxController extends GetxController {
         busData[i] = [];
       }
     }
+  }
+
+  List<Map<String, String>> coordData(){
+    final list = <Map<String, String>>[];
+    final data = dataBox.get('coordinators')! as List;
+    for(var i in data){
+      list.add({
+        'name': i['name'],
+        'number': i['number']
+      });
+    }
+    return list;
   }
 
   Future<void> getBusData() async {
@@ -80,8 +101,17 @@ class BoxController extends GetxController {
 
   Future<void> getBusses() async {
     dataBox.delete('busNo');
+    dataBox.delete('driverNo');
     final data = await FirebaseHelper().getBusses();
+    final drData = await FirebaseHelper().getBusses();
     dataBox.put('busNo', data);
+    dataBox.put('driverNo', drData);
+  }
+
+  Future<void> getCoord() async{
+    dataBox.delete('coordinators');
+    final data = await FirebaseHelper().getCoordinators();
+    dataBox.put('coordinators', data);
   }
 
   Future<void> getBusStatus() async {

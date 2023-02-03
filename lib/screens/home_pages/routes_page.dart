@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pratvi/controller/box_controller.dart';
+import 'package:pratvi/core/app_constants.dart';
 import 'package:pratvi/core/color_constants.dart';
 import 'package:pratvi/core/description_data.dart';
 import 'package:pratvi/screens/event_screen.dart';
 import 'package:pratvi/widgets/custom_appbar.dart';
 import 'package:resize/resize.dart';
 
-class RoutePage extends StatelessWidget {
-  RoutePage({Key? key}) : super(key: key);
+class RoutePage extends StatefulWidget {
+  const RoutePage({Key? key}) : super(key: key);
 
+  @override
+  State<RoutePage> createState() => _RoutePageState();
+}
+
+class _RoutePageState extends State<RoutePage>
+    with SingleTickerProviderStateMixin {
   final controller = Get.find<BoxController>();
+  late final AnimationController animController;
+
+  @override
+  void initState() {
+    animController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    animController.repeat(reverse: true);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,22 +44,44 @@ class RoutePage extends StatelessWidget {
         'Wedding Itinerary',
         backEnabled: false,
       ),
-      body: Container(
-        height: screenSize.height,
-        padding: EdgeInsets.only(
-          top: 13.sp,
-          right: 13.sp,
-          left: 13.sp,
-          bottom: 60.sp,
-        ),
-        width: screenSize.width,
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (ctx, index) => EventItem(
-            index: index,
+      body: Stack(
+        children: [
+          Container(
+            height: screenSize.height,
+            width: screenSize.width,
+            alignment: Alignment.center,
+            child: Opacity(
+              opacity: 0.3,
+              child: ScaleTransition(
+                scale: Tween(
+                  begin: 0.5,
+                  end: 1.3,
+                ).animate(animController),
+                child: SvgPicture.asset(
+                  AppConstants.appLogo,
+                  width: screenSize.width / 1.3,
+                ),
+              ),
+            ),
           ),
-          itemCount: Descriptions.event.length,
-        ),
+          Container(
+            height: screenSize.height,
+            padding: EdgeInsets.only(
+              top: 13.sp,
+              right: 13.sp,
+              left: 13.sp,
+              bottom: 60.sp,
+            ),
+            width: screenSize.width,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (ctx, index) => EventItem(
+                index: index,
+              ),
+              itemCount: Descriptions.event.length,
+            ),
+          ),
+        ],
       ),
     );
   }

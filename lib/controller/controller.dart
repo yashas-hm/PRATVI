@@ -12,11 +12,6 @@ class Controller extends GetxController {
     roomNo: [],
     familyName: [],
     familyNumber: [],
-    driverNumber: '',
-    driverName: '',
-    coordinatorName: '',
-    coordinatorNo: '',
-    busNumber: '',
   );
 
   int index = 1;
@@ -29,7 +24,7 @@ class Controller extends GetxController {
   Future<void> initialise() async {
     loggedIn = AppSharedPreferences.getLoggedIn;
     if(loggedIn){
-      if(AppSharedPreferences.getLoginNumber == '120223'){
+      if(AppSharedPreferences.getLoginNumber == '120223' || AppSharedPreferences.getLoginNumber == '080501'){
         final box = Get.find<BoxController>();
         await box.getFamilyData();
         await box.getBusData();

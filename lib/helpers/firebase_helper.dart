@@ -49,6 +49,81 @@ class FirebaseHelper {
     return AppHelpers.dynamicToString(a!['busNo']);
   }
 
+  Future<List<Map<String, String>>> getTaxi() async {
+    final doc = await firestoreInstance
+        .collection('taxi')
+        .doc(AppSharedPreferences.getLoginNumber)
+        .get();
+    final list = <Map<String, String>>[];
+    if (doc.exists) {
+      final data = doc.data()!['taxi'];
+
+      for (var i in data) {
+        list.add({
+          'name': i['name'],
+          'taxiNo': i['taxiNo'],
+          'driverNo': i['driverNo'],
+          'driverName': i['driverName'],
+        });
+      }
+      return list;
+    }
+    return [];
+  }
+
+  Future<void> createTaxi(
+    String famNo,
+    String pass,
+    String driverNo,
+    String driverName,
+    String taxiNo,
+  ) async {
+    final data = await firestoreInstance.collection('taxi').doc(famNo).get();
+    if (data.exists) {
+      await firestoreInstance.collection('taxi').doc(famNo).update({
+        'taxi': FieldValue.arrayUnion([
+          {
+            'name': pass,
+            'driverName': driverName,
+            'driverNo': driverNo,
+            'taxiNo': taxiNo,
+          }
+        ]),
+      });
+    } else {
+      await firestoreInstance.collection('taxi').doc(famNo).set({
+        'taxi': [
+          {
+            'name': pass,
+            'driverName': driverName,
+            'driverNo': driverNo,
+            'taxiNo': taxiNo,
+          }
+        ]
+      });
+    }
+  }
+
+  Future<List<String>> getDriverNos() async {
+    final cache = firestoreInstance.collection('cacheControl').doc('bus');
+    final data = await cache.get();
+    final a = data.data();
+    return AppHelpers.dynamicToString(a!['driverNo']);
+  }
+
+  Future<List<Map<String, String>>> getCoordinators() async {
+    final cache = await firestoreInstance
+        .collection('cacheControl')
+        .doc('coordinators')
+        .get();
+    final list = <Map<String, String>>[];
+    final data = cache.data()!['coordinators'];
+    for (var i in data) {
+      list.add({'name': i['name'], 'number': i['number']});
+    }
+    return list;
+  }
+
   Future<void> checkIn(
     String tripNo,
     String busNo,
@@ -81,19 +156,19 @@ class FirebaseHelper {
 
   Future<void> changeBusStatus(String bus, int status, int plan) async {
     final doc = firestoreInstance.collection('today').doc(plan.toString());
-    if(status==0){
+    if (status == 0) {
       doc.update({
         Descriptions.busStatus[0]: FieldValue.arrayUnion([bus]),
         Descriptions.busStatus[1]: FieldValue.arrayRemove([bus]),
         Descriptions.busStatus[2]: FieldValue.arrayRemove([bus]),
       });
-    }else if(status == 1){
+    } else if (status == 1) {
       doc.update({
         Descriptions.busStatus[0]: FieldValue.arrayRemove([bus]),
         Descriptions.busStatus[1]: FieldValue.arrayUnion([bus]),
         Descriptions.busStatus[2]: FieldValue.arrayRemove([bus]),
       });
-    }else if(status==2){
+    } else if (status == 2) {
       doc.update({
         Descriptions.busStatus[0]: FieldValue.arrayRemove([bus]),
         Descriptions.busStatus[1]: FieldValue.arrayRemove([bus]),
@@ -109,7 +184,7 @@ class FirebaseHelper {
     if (doc.data() != null) {
       final data = doc.data()!;
       for (var i in data.keys.toList()) {
-        if(!Descriptions.busStatus.contains(i)){
+        if (!Descriptions.busStatus.contains(i)) {
           final l = <Map<String, String>>[];
           for (var j in data[i]) {
             l.add({
@@ -147,7 +222,9 @@ class FirebaseHelper {
     final json = cache.data()!;
     data['routes'] = json['routes'].toDate();
     data['bus'] = json['bus'].toDate();
+    data['coordinators'] = json['coordinators'].toDate();
     data['todayPlan'] = int.parse(json['todayPlan']);
+
     return data;
   }
 

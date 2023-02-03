@@ -156,7 +156,7 @@ class _EventScreenState extends State<EventScreen>
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 20.sp,
+                        height: 30.sp,
                       ),
                       Container(
                         width: screenSize.width,
@@ -164,7 +164,7 @@ class _EventScreenState extends State<EventScreen>
                         child: Text(
                           Descriptions.event[widget.index],
                           style: TextStyle(
-                            fontSize: 55.sp,
+                            fontSize: 45.sp,
                             fontWeight: FontWeight.w600,
                             fontFamily: 'script',
                           ),
@@ -194,6 +194,21 @@ class _EventScreenState extends State<EventScreen>
                               .time,
                           style: TextStyle(
                             fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'script',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.sp,
+                      ),
+                      Container(
+                        width: screenSize.width,
+                        alignment: Alignment.center,
+                        child: Text(
+                          Descriptions.venue[widget.index],
+                          style: TextStyle(
+                            fontSize: 25.sp,
                             fontWeight: FontWeight.w600,
                             fontFamily: 'script',
                           ),
@@ -331,7 +346,7 @@ class RouteItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Trip ${tripIndex + 1}',
+            'Route ${tripIndex + 1}',
             style: TextStyle(
               fontSize: 22.sp,
               fontWeight: FontWeight.w600,
@@ -361,7 +376,7 @@ class RouteItem extends StatelessWidget {
             height: 10.sp,
           ),
           Text(
-            'Leave At: ${route.time}',
+            'Time: ${route.time} onwards',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w500,

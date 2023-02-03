@@ -17,14 +17,14 @@ class HomeScreen extends StatelessWidget {
 
   Widget pages(int index) {
     switch (index) {
-      case 0:
+      case 2:
         return const TodayPage();
       case 1:
-        return RoutePage();
-      case 2:
+        return const RoutePage();
+      case 0:
         return FamilyPage();
       default:
-        return RoutePage();
+        return const RoutePage();
     }
   }
 
@@ -57,13 +57,13 @@ class HomeScreen extends StatelessWidget {
                 ),
                 icons: [
                   FluidNavBarIcon(
-                    svgPath: AppConstants.todayIcon,
+                    svgPath: AppConstants.familyInfoIcon,
                   ),
                   FluidNavBarIcon(
                     svgPath: AppConstants.routeIcon,
                   ),
                   FluidNavBarIcon(
-                    svgPath: AppConstants.familyInfoIcon,
+                    svgPath: AppConstants.todayIcon,
                   ),
                 ],
                 onChange: (index) => controller.moveToIndex(index),

@@ -22,7 +22,7 @@ class _BusStatusPageState extends State<BusStatusPage> {
 
     return Scaffold(
       appBar: CustomAppBar.customAppBar(
-        'Bus Status',
+        'Bus Current Status',
         backEnabled: false,
       ),
       body: RefreshIndicator(
@@ -96,8 +96,8 @@ class BusItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[1]
-                    ? Colors.blueGrey
-                    : AppColors().darkGreen,
+                    ? AppColors().lightGreen
+                    : Colors.grey,
               ),
               alignment: Alignment.center,
               child: Text(
@@ -122,8 +122,8 @@ class BusItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[2]
-                    ? Colors.blueGrey
-                    : AppColors().darkGreen,
+                    ? AppColors().lightGreen
+                    : Colors.grey,
               ),
               alignment: Alignment.center,
               child: Text(
@@ -148,8 +148,8 @@ class BusItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8.sp)),
                 color: status == Descriptions.busStatus[0]
-                    ? Colors.blueGrey
-                    : AppColors().darkGreen,
+                    ? AppColors().lightGreen
+                    : Colors.grey,
               ),
               alignment: Alignment.center,
               child: Text(

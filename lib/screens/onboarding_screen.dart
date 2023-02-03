@@ -31,6 +31,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       duration: const Duration(seconds: 20),
     );
 
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+      if (scrollController.initialScrollOffset >=
+          scrollController.position.maxScrollExtent)
+        {
+          setState(() {
+            more = false;
+          })
+        }
+    });
+
     scrollController.addListener(() {
       scroll = scrollController.offset;
 
@@ -164,7 +174,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                         child: Text(
                           'Welcome to Rutvi & Pranay\'s Wedding',
                           style: TextStyle(
-                            fontSize: 55.sp,
+                            fontSize: 45.sp,
                             fontWeight: FontWeight.w600,
                             fontFamily: 'script',
                           ),

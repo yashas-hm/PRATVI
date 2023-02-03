@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
                   () => const LoginScreen(),
             );
           } else {
-            if (AppSharedPreferences.getLoginNumber == '120223') {
+            if (AppSharedPreferences.getLoginNumber == '120223' || AppSharedPreferences.getLoginNumber == '080501') {
               controller.index = 0;
               Get.off(
                     () => CoordHomeScreen(),

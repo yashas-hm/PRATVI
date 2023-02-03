@@ -9,12 +9,21 @@ class Descriptions {
   ];
 
   static List<String> event = [
-    'Mehendi',
+    'Jaan Welcome / Pranay\'s Mehendi',
     'Sangeet',
-    'Haldi',
-    'Baraat',
+    'Pranay\'s Haldi',
+    'Baraat Prasthan',
     'Shaadi',
-    'Thank You'
+    'Back Home'
+  ];
+
+  static List<String> venue = [
+    'Vishala',
+    'Shrikunj Greens',
+    'Novotel Banquet Hall',
+    'Assembly Point near Novotel',
+    'KK Farms',
+    'Thank you',
   ];
 
   static List<String> busStatus = [
@@ -47,8 +56,27 @@ Turmeric is extremely good for the skin. It gives the skin a healthy glow and en
 Massaging the ubtan onto the skin relaxes the body and takes the mind off the tension. It also has an antioxidant called curcumin that acts as a mild counter to depression and anxiety which helps the bride and the groom stay calm for the wedding.
 
 The colour yellow is indeed associated with new beginnings, peace and happiness.''',
-    '''Baraat Text''',
-    '''Shaadi Text''',
+    '''The jaan (baarat in Gujarati), held on the wedding day, is a very entertaining, sweet and funny ritual. It refers to the groom and a party of people consisting of his friends and family who accompany him to the marriage venue. The sister of the groom waves a pouch of coins over the head of the groom to keep off any bad luck or the “evil eye”. Then the procession sets off with the groom on horseback and the accompanying party dances and bursts crackers while arriving at the marriage venue.
+
+After arriving at the marriage venue, the groom touches his soon-to-be mother-in-law’s feet for her blessings, and she tries to grab his nose while he tries to avoid her clutch. This playful ritual is to remind the groom that she is giving her precious daughter to him, so he should be humble and grateful.''',
+    '''Jaimala or varmala: The bride and the groom meet for the first time on the wedding day with this ritual which commences the start of the main wedding rituals. It is an indication of acceptance of each other as their spouse, and a pledge to respect them throughout the rest of their lives. They exchange garlands.
+
+Antarpaat: The bride now arrives at the mandap led by her maternal uncle and an opaque cloth is placed between the bride and the groom like a curtain as the mantras of the Gujarati wedding is chanted.
+The cloth signifies their individual lives and existence prior to the ceremony. Removing the antarpat signifies two souls becoming one.
+
+Kanyadaan: This ritual symbolizes the father of the bride placing his trust on his son-in-law. From now on, his son-in-law is responsible for the happiness of his daughter.
+
+Hasta Milap: The priest now ties one end of the groom’s shawl to one end of the bride’s saree.The tying of knot and the joined hands of the couple are symbolic of the meeting of two hearts and souls. The acharya or the priest chants mantras and seeks the blessings of Goddess Laxmi and Parvatiji for the couple.
+
+Pheras: Unlike other Indian cultures, in a Gujarati wedding, the couple takes four pheras, instead of seven, around the sacred fire. The four pheras have immense significance in the marriage. Each of them symbolizes one goal of human life –Dharma, Artha, Kama and Moksha.
+
+Saptapadi: It is an important step of any Hindu marriage. In a typical Gujarati Marriage, the groom helps the bride in touching the seven betel nuts with her right toe, while both of them recite the seven vows for their commitment towards each other. At each step of the Saptapadi, the groom asks for support from his bride throughout his life.
+
+Saubhagyavati bhava: This is a way to bless the newly wedded couple. In this tradition, seven married women from the bride’s family whisper good wishes and blessings in the right ear of the bride. They bless her to remain a Saubhagyavati i.e. lucky throughout her life.
+
+Hey shubhaarambh, ho shubhaarambh
+Mangal bela aayi
+Sapnon ki dehri pe dil ki baaji re shehnai''',
     '''We would like to thank you for sharing in our wedding celebrations.
     
     We are grateful for your presence, warm wishes, and blessings. Your presence at the wedding has added so much love to Rutvi and Pranay's special day.
