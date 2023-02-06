@@ -289,7 +289,7 @@ class _EventScreenState extends State<EventScreen>
                     margin: EdgeInsets.all(10.sp),
                     alignment: Alignment.center,
                     height: 40.sp,
-                    width: 100.sp,
+                    width: 110.sp,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -302,7 +302,9 @@ class _EventScreenState extends State<EventScreen>
                         Text(
                           'More',
                           style: TextStyle(
-                              fontSize: 15.sp, fontWeight: FontWeight.w600),
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),

@@ -73,14 +73,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
 
                             bool result = false;
+                            final box = Get.find<BoxController>();
 
                             if (number == '120223' || number == '080501') {
                               AppSharedPreferences.setLoggedIn = true;
                               AppSharedPreferences.setLoginNumber = number;
-                              final box = Get.find<BoxController>();
                               await box.getFamilyData();
-
-                              Get.off(() => CoordHomeScreen());
+                              await box.taxiList();
+                              Get.offAll(() => CoordHomeScreen());
                             } else {
                               result = await FirebaseHelper().login(number);
                             }
@@ -90,7 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
 
                             if (result) {
-                              Get.off(() => const OnBoardingScreen());
+                              await box.taxiList();
+                              Get.offAll(() => const OnBoardingScreen());
                             }
                           },
                           child: Container(
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontSize: 18.sp,
                 color: AppColors().darkGreen,
               ),
-              keyboardType: TextInputType.number,
+              keyboardType: Platform.isIOS?TextInputType.text:TextInputType.number,
               maxLines: 1,
               maxLength: 10,
               textInputAction: TextInputAction.done,

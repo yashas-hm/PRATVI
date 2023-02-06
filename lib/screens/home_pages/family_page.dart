@@ -65,99 +65,104 @@ class _FamilyPageState extends State<FamilyPage> with SingleTickerProviderStateM
               ),
             ),
           ),
-          SizedBox(
-            width: screenSize.width,
-            height: screenSize.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(13.sp),
-                  itemBuilder: (ctx, index) => FamilyItem(
-                    name: controller.family.familyName[index],
-                    number: controller.family.familyNumber[index],
-                    roomNo: controller.family.roomNo[index],
+          SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: SizedBox(
+              width: screenSize.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(13.sp),
+                    itemBuilder: (ctx, index) => FamilyItem(
+                      name: controller.family.familyName[index],
+                      number: controller.family.familyNumber[index],
+                      roomNo: controller.family.roomNo[index],
+                    ),
+                    itemCount: controller.family.familyName.length,
                   ),
-                  itemCount: controller.family.familyName.length,
-                ),
-                SizedBox(
-                  height: 10.sp,
-                ),
-                Container(
-                  width: screenSize.width,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Coordinator Details',
-                    maxLines: 2,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors().darkGreen,
+                  SizedBox(
+                    height: 10.sp,
+                  ),
+                  Container(
+                    width: screenSize.width,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Coordinator Details',
+                      maxLines: 2,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors().darkGreen,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10.sp,
-                ),
-                ListView.builder(
-                  itemCount: coordData.length,
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(13.sp),
-                  itemBuilder: (ctx, index) => Container(
-                    margin: EdgeInsets.only(bottom: 8.sp),
-                    width: screenSize.width,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            coordData[index]['name'].toString(),
-                            maxLines: 2,
-                            softWrap: true,
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors().darkGreen,
-                            ),
-                          ),
-                        ),
-                        Link(
-                          uri: Uri.parse(
-                              'tel://+91${coordData[index]['number']}'),
-                          builder: (ctx, link) => InkWell(
-                            onTap: link,
-                            child: Container(
-                              width: 80.sp,
-                              height: 30.sp,
-                              margin: EdgeInsets.only(left: 5.sp),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.sp)),
+                  SizedBox(
+                    height: 10.sp,
+                  ),
+                  ListView.builder(
+                    itemCount: coordData.length,
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(13.sp),
+                    itemBuilder: (ctx, index) => Container(
+                      margin: EdgeInsets.only(bottom: 8.sp),
+                      width: screenSize.width,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              coordData[index]['name'].toString(),
+                              maxLines: 2,
+                              softWrap: true,
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
                                 color: AppColors().darkGreen,
                               ),
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Call',
-                                style: TextStyle(
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white),
+                            ),
+                          ),
+                          Link(
+                            uri: Uri.parse(
+                                'tel://+91${coordData[index]['number']}'),
+                            builder: (ctx, link) => InkWell(
+                              onTap: link,
+                              child: Container(
+                                width: 80.sp,
+                                height: 30.sp,
+                                margin: EdgeInsets.only(left: 5.sp),
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.sp)),
+                                  color: AppColors().darkGreen,
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Call',
+                                  style: TextStyle(
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 60.sp,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
