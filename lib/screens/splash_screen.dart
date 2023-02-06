@@ -61,12 +61,12 @@ class _SplashScreenState extends State<SplashScreen>
           } else {
             if (AppSharedPreferences.getLoginNumber == '120223' || AppSharedPreferences.getLoginNumber == '080501') {
               controller.index = 0;
-              Get.off(
+              Get.offAll(
                     () => CoordHomeScreen(),
               );
             }else{
               await boxController.taxiList();
-              Get.off(
+              Get.offAll(
                     () => HomeScreen(),
               );
             }

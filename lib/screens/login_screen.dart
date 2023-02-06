@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -63,60 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: 'Phone Number',
                 counterText: '',
                 labelStyle: TextStyle(color: AppColors().darkGreen),
-                suffix: Platform.isIOS
-                    ? Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () async {
-                            setState(() {
-                              login = true;
-                            });
-
-                            bool result = false;
-
-                            if (number == '120223' || number == '080501') {
-                              AppSharedPreferences.setLoggedIn = true;
-                              AppSharedPreferences.setLoginNumber = number;
-                              final box = Get.find<BoxController>();
-                              await box.getFamilyData();
-
-                              Get.off(() => CoordHomeScreen());
-                            } else {
-                              result = await FirebaseHelper().login(number);
-                            }
-
-                            setState(() {
-                              login = false;
-                            });
-
-                            if (result) {
-                              Get.off(() => const OnBoardingScreen());
-                            }
-                          },
-                          child: Container(
-                            height: 30.sp,
-                            width: 60.sp,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30.sp),
-                              color: AppColors().darkGreen,
-                            ),
-                            child: login
-                                ? const CircularProgressIndicator(
-                                    color: Colors.white,
-                                  )
-                                : Text(
-                                    'Login',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13.sp,
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      )
-                    : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.sp),
                   borderSide: BorderSide(
@@ -158,67 +102,68 @@ class _LoginScreenState extends State<LoginScreen> {
               textInputAction: TextInputAction.done,
               onChanged: (value) => number = value,
             ),
-            if (Platform.isAndroid)
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13.sp),
-                      color: login ? Colors.black38 : AppColors().darkGreen,
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () async {
-                          setState(() {
-                            login = true;
-                          });
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(13.sp),
+                    color: login ? Colors.black38 : AppColors().darkGreen,
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () async {
+                        setState(() {
+                          login = true;
+                        });
 
-                          bool result = false;
+                        bool result = false;
 
-                          if (number == '120223' || number == '080501') {
-                            AppSharedPreferences.setLoggedIn = true;
-                            AppSharedPreferences.setLoginNumber = number;
-                            final box = Get.find<BoxController>();
-                            await box.getFamilyData();
+                        final box = Get.find<BoxController>();
 
-                            Get.off(() => CoordHomeScreen());
-                          } else {
-                            result = await FirebaseHelper().login(number);
-                          }
+                        if (number == '120223' || number == '080501') {
+                          AppSharedPreferences.setLoggedIn = true;
+                          AppSharedPreferences.setLoginNumber = number;
+                          await box.getFamilyData();
 
-                          setState(() {
-                            login = false;
-                          });
+                          Get.offAll(() => CoordHomeScreen());
+                        } else {
+                          result = await FirebaseHelper().login(number);
+                        }
 
-                          if (result) {
-                            Get.off(() => const OnBoardingScreen());
-                          }
-                        },
-                        splashColor: Colors.white,
-                        child: Container(
-                          height: 60.sp,
-                          width: 200.sp,
-                          alignment: Alignment.center,
-                          child: login
-                              ? const CircularProgressIndicator(
+                        if (result) {
+                          await box.taxiList();
+                          Get.offAll(() => const OnBoardingScreen());
+                        }
+
+                        setState(() {
+                          login = false;
+                        });
+                      },
+                      splashColor: Colors.white,
+                      child: Container(
+                        height: 60.sp,
+                        width: 200.sp,
+                        alignment: Alignment.center,
+                        child: login
+                            ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : Text(
+                                'Login',
+                                style: TextStyle(
                                   color: Colors.white,
-                                )
-                              : Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.sp,
-                                  ),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20.sp,
                                 ),
-                        ),
+                              ),
                       ),
                     ),
                   ),
                 ),
               ),
+            ),
           ],
         ),
       ),

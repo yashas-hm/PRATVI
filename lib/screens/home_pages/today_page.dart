@@ -41,7 +41,9 @@ class _TodayPageState extends State<TodayPage>
     animController.repeat(reverse: true);
     busses = boxes.dataBox.get('busNo')! as List<String>;
     for (var i in boxes.taxis) {
-      busses.add(i['taxiNo']!);
+      if(!busses.contains(i['taxiNo']!)){
+        busses.add(i['taxiNo']!);
+      }
     }
     super.initState();
   }
@@ -117,14 +119,15 @@ class _TodayPageState extends State<TodayPage>
               busses.clear();
               busses = boxes.dataBox.get('busNo')! as List<String>;
               for (var i in boxes.taxis) {
-                busses.add(i['taxiNo']!);
+                if(!busses.contains(i['taxiNo']!)){
+                  busses.add(i['taxiNo']!);
+                }
               }
               setState(() {});
             },
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Container(
-                height: screenSize.height - 90.sp,
                 width: screenSize.width,
                 padding: EdgeInsets.all(13.sp),
                 child: Column(
@@ -412,6 +415,7 @@ class _TodayPageState extends State<TodayPage>
                       ),
                     ),
                     Expanded(
+                      flex: 0,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: InkWell(

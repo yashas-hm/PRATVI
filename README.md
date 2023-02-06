@@ -13,9 +13,9 @@ Features of this app:
 
 
 ## Initial Pages
-|Screen Name|Image|Screen Name|Image|
-|:---:|:---:|:---:|:---:|
-|**Splash Screen**|<img src="https://github.com/yashas-hm/PRATVI/blob/master/screenshots/ss%20(1).jpg?raw=true" width=200/>|**Login Screen**|<img src="https://github.com/yashas-hm/PRATVI/blob/master/screenshots/ss%20(5).jpg?raw=true" width=200/>|
+|    Screen Name    |                                                  Image                                                   |   Screen Name    |                                                  Image                                                   |
+|:-----------------:|:--------------------------------------------------------------------------------------------------------:|:----------------:|:--------------------------------------------------------------------------------------------------------:|
+| **Splash Screen** | <img src="https://github.com/yashas-hm/PRATVI/blob/master/screenshots/ss%20(1).jpg?raw=true" width=200/> | **Login Screen** | <img src="https://github.com/yashas-hm/PRATVI/blob/master/screenshots/ss%20(5).jpg?raw=true" width=200/> |
 
 ## After Login (User)
 |Screen Name|Image|Screen Name|Image|Screen Name|Image|
