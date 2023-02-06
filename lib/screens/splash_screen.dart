@@ -51,6 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
           final boxController = Get.find<BoxController>();
           await boxController.updateCache();
           await boxController.getBusData();
+          await boxController.taxiList();
 
           SystemChrome.setSystemUIOverlayStyle(
               SystemUiOverlayStyle(statusBarColor: AppColors().lightGreen));

@@ -26,6 +26,19 @@ class _CoordHomePageState extends State<CoordHomePage> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final busses = boxes.dataBox.get('busNo')! as List<String>;
+    final list = <String>[];
+    for (var i in boxes.busData.values.toList()) {
+      for (var j in i) {
+        list.add(j['name']!);
+      }
+    }
+
+    final notCheckedIn = <Map<String, String>>[];
+    for (var i in boxes.familyData) {
+      if (!list.contains(i['name'])) {
+        notCheckedIn.add(i);
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -253,7 +266,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                           list.addAll(i);
                         }
 
-                        return boxes.familyData
+                        return notCheckedIn
                             .where((element) =>
                                 element['name']!
                                     .toLowerCase()

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:get/get.dart';
+import 'package:pratvi/controller/box_controller.dart';
 import 'package:pratvi/core/color_constants.dart';
 import 'package:pratvi/helpers/firebase_helper.dart';
 import 'package:pratvi/helpers/snackbar_helper.dart';
@@ -15,11 +18,13 @@ class TaxiPage extends StatefulWidget {
 class _TaxiPageState extends State<TaxiPage> {
   final formKey = GlobalKey<FormState>();
 
+  final boxes = Get.find<BoxController>();
+
+  final textEditCtr = TextEditingController();
+
   String famNo = '';
 
   String driverNo = '';
-
-  String name = '';
 
   String taxiNo = '';
 
@@ -79,6 +84,8 @@ class _TaxiPageState extends State<TaxiPage> {
                           color: AppColors().darkGreen,
                         ),
                       ),
+                      fillColor: Colors.white,
+                      filled: true,
                     ),
                     maxLength: 15,
                     maxLines: 1,
@@ -88,44 +95,92 @@ class _TaxiPageState extends State<TaxiPage> {
                   SizedBox(
                     height: 10.sp,
                   ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value.toString().trim().isEmpty ||
-                          value.toString().trim() == '') {
-                        return 'Enter a value.';
-                      }
-                      return null;
+                  TypeAheadFormField(
+                    animationStart: 0,
+                    animationDuration: Duration.zero,
+                    textFieldConfiguration: TextFieldConfiguration(
+                      autofocus: false,
+                      controller: textEditCtr,
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        color: AppColors().darkGreen,
+                      ),
+                      decoration: InputDecoration(
+                        labelText: 'Passenger Name',
+                        labelStyle: TextStyle(
+                          fontSize: 15.sp,
+                          color: AppColors().darkGreen,
+                        ),
+                        counterText: '',
+                        hintStyle: TextStyle(
+                          fontSize: 15.sp,
+                          color: AppColors().darkGreen,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                          borderSide: BorderSide(
+                            width: 1.sp,
+                            color: AppColors().darkGreen,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                          borderSide: BorderSide(
+                            width: 1.sp,
+                            color: AppColors().darkGreen,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.sp),
+                          borderSide: BorderSide(
+                            width: 1.sp,
+                            color: AppColors().darkGreen,
+                          ),
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      cursorColor: AppColors().darkGreen,
+                      maxLength: 50,
+                      maxLines: 1,
+                    ),
+                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.sp),
+                    ),
+                    suggestionsCallback: (pattern) {
+                      return boxes.familyData.where((element) =>
+                          element['name']!.toLowerCase().contains(pattern));
                     },
-                    onChanged: (value) => name = value.toString().trim(),
-                    decoration: InputDecoration(
-                      labelText: 'Name of passenger',
-                      counterText: '',
-                      border: OutlineInputBorder(
+                    itemBuilder: (ctx, guest) => Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                      height: 40.sp,
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(
-                          width: 1.sp,
-                          color: AppColors().darkGreen,
-                        ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(
-                          width: 1.sp,
-                          color: AppColors().darkGreen,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        borderSide: BorderSide(
-                          width: 1.sp,
+                      margin: EdgeInsets.symmetric(vertical: 2.5.sp),
+                      child: Text(
+                        guest['name']!,
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          decoration: TextDecoration.none,
                           color: AppColors().darkGreen,
                         ),
                       ),
                     ),
-                    maxLength: 80,
-                    maxLines: 1,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
+                    onSuggestionSelected: (suggestion) {
+                      textEditCtr.text = suggestion['name']!;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty || value == '') {
+                        return 'Enter name of passenger.';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 10.sp,
@@ -163,6 +218,8 @@ class _TaxiPageState extends State<TaxiPage> {
                           color: AppColors().darkGreen,
                         ),
                       ),
+                      fillColor: Colors.white,
+                      filled: true,
                     ),
                     maxLength: 80,
                     maxLines: 1,
@@ -205,6 +262,8 @@ class _TaxiPageState extends State<TaxiPage> {
                           color: AppColors().darkGreen,
                         ),
                       ),
+                      fillColor: Colors.white,
+                      filled: true,
                     ),
                     maxLength: 15,
                     maxLines: 1,
@@ -250,6 +309,8 @@ class _TaxiPageState extends State<TaxiPage> {
                           color: AppColors().darkGreen,
                         ),
                       ),
+                      fillColor: Colors.white,
+                      filled: true,
                     ),
                     maxLength: 14,
                     maxLines: 1,
@@ -270,13 +331,14 @@ class _TaxiPageState extends State<TaxiPage> {
                     if (formKey.currentState!.validate()) {
                       await FirebaseHelper().createTaxi(
                         famNo,
-                        name,
+                        textEditCtr.text,
                         driverNo,
                         driverName,
                         taxiNo,
                       );
                       formKey.currentState!.reset();
-                      SnackBarHelper.successMsg(msg: 'Taxi created Successfully.');
+                      SnackBarHelper.successMsg(
+                          msg: 'Taxi created Successfully.');
                     }
                     setState(() {
                       uploading = false;

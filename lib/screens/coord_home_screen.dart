@@ -50,7 +50,7 @@ class CoordHomeScreen extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: FluidNavBar(
-                defaultIndex: 0,
+                defaultIndex: controller.index,
                 animationFactor: 0.5,
                 style: FluidNavBarStyle(
                   iconBackgroundColor: AppColors().lightGreen,
