@@ -30,15 +30,19 @@ class _TodayPageState extends State<TodayPage>
 
   String busNo = '';
 
-  final List<Map<String, String>> taxiList = [];
-
   late final AnimationController animController;
+
+  late final List<String> busses;
 
   @override
   void initState() {
     animController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     animController.repeat(reverse: true);
+    busses = boxes.dataBox.get('busNo')! as List<String>;
+    for (var i in boxes.taxis) {
+      busses.add(i['taxiNo']!);
+    }
     super.initState();
   }
 
@@ -64,13 +68,22 @@ class _TodayPageState extends State<TodayPage>
     }
   }
 
+  bool checkTaxi() {
+    bool check = false;
+    for (var i in boxes.taxis) {
+      if (i['taxiNo'] == busNo) {
+        check = true;
+      }
+    }
+    return check;
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final key = boxes.routesBox.keyAt(boxes.plan - 1);
     final route = boxes.routesBox.get(key)!;
     List<String> checkIns = boxes.getList(controller.family);
-    final busses = boxes.dataBox.get('busNo')! as List<String>;
 
     return Scaffold(
       appBar: CustomAppBar.customAppBar(
@@ -100,8 +113,12 @@ class _TodayPageState extends State<TodayPage>
           RefreshIndicator(
             onRefresh: () async {
               await boxes.updateCache();
-              final data = await FirebaseHelper().getTaxi();
-              taxiList.addAll(data);
+              await boxes.taxiList();
+              busses.clear();
+              busses = boxes.dataBox.get('busNo')! as List<String>;
+              for (var i in boxes.taxis) {
+                busses.add(i['taxiNo']!);
+              }
               setState(() {});
             },
             child: SingleChildScrollView(
@@ -195,7 +212,7 @@ class _TodayPageState extends State<TodayPage>
                     SizedBox(
                       width: screenSize.width,
                       child: Text(
-                        'Select bus registration number:',
+                        'Select bus/taxi number:',
                         style: TextStyle(
                           color: AppColors().darkGreen,
                           fontWeight: FontWeight.w400,
@@ -212,7 +229,9 @@ class _TodayPageState extends State<TodayPage>
                             (e) => DropdownMenuItem<String>(
                               value: e,
                               child: Text(
-                                'Bus No. ${busses.indexOf(e) + 1}',
+                                busses.indexOf(e) > 8
+                                    ? 'Taxi No. $e'
+                                    : 'Bus No. ${busses.indexOf(e) + 1}',
                                 style: TextStyle(
                                   fontSize: 15.sp,
                                 ),
@@ -250,11 +269,11 @@ class _TodayPageState extends State<TodayPage>
                         ),
                       ),
                     ),
-                    if (busNo != '')
+                    if (busNo != '' && !checkTaxi())
                       SizedBox(
                         height: 10.sp,
                       ),
-                    if (busNo != '')
+                    if (busNo != '' && !checkTaxi())
                       SizedBox(
                         width: screenSize.width,
                         child: Row(
@@ -303,108 +322,94 @@ class _TodayPageState extends State<TodayPage>
                     SizedBox(
                       height: 10.sp,
                     ),
-                    FutureBuilder<List<Map<String, String>>>(
-                      future: FirebaseHelper().getTaxi(),
-                      builder: (ctx, state) {
-                        if (state.connectionState == ConnectionState.done) {
-                          final data = state.data!;
-                          taxiList.clear();
-                          taxiList.addAll(data);
-                          return ListView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: data.length,
-                            itemBuilder: (ctx, index) => Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.7),
-                                borderRadius: BorderRadius.circular(15.sp),
-                              ),
-                              padding: EdgeInsets.all(10.sp),
+                    ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: boxes.taxis.length,
+                      itemBuilder: (ctx, index) => Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(15.sp),
+                        ),
+                        padding: EdgeInsets.all(10.sp),
+                        margin: EdgeInsets.only(bottom: 10.sp),
+                        width: screenSize.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
                               width: screenSize.width,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                              child: Text(
+                                'Taxi for: ${boxes.taxis[index]['name']}',
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5.sp,
+                            ),
+                            SizedBox(
+                              width: screenSize.width,
+                              child: Text(
+                                'Taxi number: ${boxes.taxis[index]['taxiNo']}',
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenSize.width,
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
-                                    width: screenSize.width,
+                                  Expanded(
                                     child: Text(
-                                      'Taxi for: ${data[index]['name']}',
+                                      'Driver: ${boxes.taxis[index]['driverName']}',
+                                      maxLines: 2,
+                                      softWrap: true,
                                       style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 15.sp,
                                         fontWeight: FontWeight.w600,
+                                        color: AppColors().darkGreen,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 5.sp,
-                                  ),
-                                  SizedBox(
-                                    width: screenSize.width,
-                                    child: Text(
-                                      'Taxi number: ${data[index]['taxiNo']}',
-                                      style: TextStyle(
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: screenSize.width,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            'Driver: ${data[index]['driverName']}',
-                                            maxLines: 2,
-                                            softWrap: true,
-                                            style: TextStyle(
-                                              fontSize: 15.sp,
+                                  Link(
+                                    uri: Uri.parse(
+                                        'tel://+91${boxes.taxis[index]['driverNo']}'),
+                                    builder: (ctx, link) => InkWell(
+                                      onTap: link,
+                                      child: Container(
+                                        width: 80.sp,
+                                        height: 30.sp,
+                                        margin: EdgeInsets.only(left: 5.sp),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8.sp)),
+                                          color: AppColors().darkGreen,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'Call',
+                                          style: TextStyle(
+                                              fontSize: 13.sp,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColors().darkGreen,
-                                            ),
-                                          ),
+                                              color: Colors.white),
                                         ),
-                                        Link(
-                                          uri: Uri.parse(
-                                              'tel://+91${data[index]['driverNo']}'),
-                                          builder: (ctx, link) => InkWell(
-                                            onTap: link,
-                                            child: Container(
-                                              width: 80.sp,
-                                              height: 30.sp,
-                                              margin:
-                                                  EdgeInsets.only(left: 5.sp),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(8.sp)),
-                                                color: AppColors().darkGreen,
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                'Call',
-                                                style: TextStyle(
-                                                    fontSize: 13.sp,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          );
-                        }
-
-                        return Container();
-                      },
+                          ],
+                        ),
+                      ),
                     ),
                     Expanded(
                       child: Align(

@@ -23,14 +23,16 @@ class Controller extends GetxController {
 
   Future<void> initialise() async {
     loggedIn = AppSharedPreferences.getLoggedIn;
+    final box = Get.find<BoxController>();
     if(loggedIn){
       if(AppSharedPreferences.getLoginNumber == '120223' || AppSharedPreferences.getLoginNumber == '080501'){
-        final box = Get.find<BoxController>();
         await box.getFamilyData();
         await box.getBusData();
         index = 0;
       }else{
+        index = 1;
         await FirebaseHelper().getFamilyData();
+        await box.taxiList();
       }
     }
   }

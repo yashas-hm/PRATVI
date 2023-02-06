@@ -1,9 +1,9 @@
 name: pratvi
-description: A new Flutter project.
+description: Ruts gets Pranked!
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -24,7 +24,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_typeahead: ^4.1.1
 
-  #INFO firebase dependencies
+  #INFO: firebase dependencies
   firebase_crashlytics: ^3.0.6
   firebase_core: ^2.3.0
   cloud_firestore: ^4.1.0

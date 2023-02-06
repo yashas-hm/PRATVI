@@ -12,6 +12,7 @@ class BoxController extends GetxController {
   late List<Map<String, String>> familyData;
   late Map<String, List<Map<String, String>>> busData;
   late Map<String, List<String>> busStatus;
+  late List<Map<String, String>> taxis;
   int plan = 0;
 
   String getBusStatusString(String bus) {
@@ -129,6 +130,9 @@ class BoxController extends GetxController {
       routesBox.add(i);
     }
   }
+  Future<void> taxiList() async {
+    taxis = await FirebaseHelper().getTaxi();
+  }
 
   List<String> getList(FamilyModel family) {
     final list = <String>[];
@@ -136,7 +140,9 @@ class BoxController extends GetxController {
       for (var j in i) {
         int index =
             family.familyNumber.indexWhere((element) => element == j['number']);
-        list.add(family.familyName[index]);
+        if(index!=-1){
+          list.add(family.familyName[index]);
+        }
       }
     }
     return list;
