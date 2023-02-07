@@ -33,7 +33,7 @@ class _BusStatusPageState extends State<BusStatusPage> {
         child: ListView.builder(
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
-          padding: EdgeInsets.all(10.sp),
+          padding: EdgeInsets.only(right: 10.sp, left: 10.sp, top:10.sp, bottom: 70.sp,),
           itemBuilder: (ctx, index) => BusItem(
             bus: busses[index],
             index: index,
@@ -83,7 +83,7 @@ class BusItem extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'Bus ${index + 1}',
+              bus,
               style: TextStyle(fontSize: 15.sp),
             ),
           ),

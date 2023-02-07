@@ -232,9 +232,7 @@ class _TodayPageState extends State<TodayPage>
                             (e) => DropdownMenuItem<String>(
                               value: e,
                               child: Text(
-                                busses.indexOf(e) > 8
-                                    ? 'Taxi No. $e'
-                                    : 'Bus No. ${busses.indexOf(e) + 1}',
+                                e,
                                 style: TextStyle(
                                   fontSize: 15.sp,
                                 ),

@@ -47,10 +47,9 @@ class _CoordListPageState extends State<CoordListPage> {
           setState(() {});
         },
         child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Container(
             padding: EdgeInsets.all(13.sp),
-            height: screenSize.height - 80.sp,
             width: screenSize.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -200,7 +199,7 @@ class _CoordListPageState extends State<CoordListPage> {
                         (e) => DropdownMenuItem<String>(
                           value: e,
                           child: Text(
-                            'Bus No. ${busses.indexOf(e) + 1}',
+                            e,
                             style: TextStyle(
                               fontSize: 15.sp,
                             ),
@@ -242,26 +241,29 @@ class _CoordListPageState extends State<CoordListPage> {
                   height: 10.sp,
                 ),
                 if (busNo != '')
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: boxes.busData[busNo]!.length,
-                    itemBuilder: (ctx, index) => Container(
-                      width: screenSize.width,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5.sp,
-                        horizontal: 10.sp,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.sp),
-                        color: Colors.white,
-                      ),
-                      margin: EdgeInsets.only(bottom: 5.sp),
-                      child: Text(
-                        boxes.busData[busNo]![index]['name']!,
-                        style: TextStyle(
-                          fontSize: 15.sp,
-                          decoration: TextDecoration.none,
-                          color: AppColors().darkGreen,
+                  SizedBox(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: boxes.busData[busNo]!.length,
+                      itemBuilder: (ctx, index) => Container(
+                        width: screenSize.width,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 5.sp,
+                          horizontal: 10.sp,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.sp),
+                          color: Colors.white,
+                        ),
+                        margin: EdgeInsets.only(bottom: 5.sp),
+                        child: Text(
+                          boxes.busData[busNo]![index]['name']!,
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            decoration: TextDecoration.none,
+                            color: AppColors().darkGreen,
+                          ),
                         ),
                       ),
                     ),
@@ -280,64 +282,63 @@ class _CoordListPageState extends State<CoordListPage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: screenSize.width,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: notCheckedIn.length,
-                    itemBuilder: (ctx, index) => Container(
-                      width: screenSize.width,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5.sp,
-                        horizontal: 10.sp,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.sp),
-                        color: Colors.white,
-                      ),
-                      margin: EdgeInsets.only(bottom: 5.sp),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            notCheckedIn[index]['name']!,
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              decoration: TextDecoration.none,
-                              color: AppColors().darkGreen,
-                            ),
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: notCheckedIn.length,
+                  itemBuilder: (ctx, index) => Container(
+                    width: screenSize.width,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 5.sp,
+                      horizontal: 10.sp,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.sp),
+                      color: Colors.white,
+                    ),
+                    margin: EdgeInsets.only(bottom: 5.sp),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          notCheckedIn[index]['name']!,
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            decoration: TextDecoration.none,
+                            color: AppColors().darkGreen,
                           ),
-                          Link(
-                            uri: Uri.parse(
-                                'tel://+91${notCheckedIn[index]['number']}'),
-                            builder: (ctx, link) => InkWell(
-                              onTap: link,
-                              child: Container(
-                                width: 80.sp,
-                                height: 30.sp,
-                                margin: EdgeInsets.only(left: 5.sp),
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8.sp)),
-                                  color: AppColors().darkGreen,
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Call',
-                                  style: TextStyle(
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
-                                ),
+                        ),
+                        Link(
+                          uri: Uri.parse(
+                              'tel://+91${notCheckedIn[index]['number']}'),
+                          builder: (ctx, link) => InkWell(
+                            onTap: link,
+                            child: Container(
+                              width: 80.sp,
+                              height: 30.sp,
+                              margin: EdgeInsets.only(left: 5.sp),
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.sp)),
+                                color: AppColors().darkGreen,
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Call',
+                                style: TextStyle(
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
+                SizedBox(height: 60.sp,),
               ],
             ),
           ),
