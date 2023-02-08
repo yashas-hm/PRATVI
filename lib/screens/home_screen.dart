@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       case 1:
         return const RoutePage();
       case 0:
-        return FamilyPage();
+        return const FamilyPage();
       default:
         return const RoutePage();
     }

@@ -39,7 +39,8 @@ class _TodayPageState extends State<TodayPage>
     animController =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     animController.repeat(reverse: true);
-    busses = boxes.dataBox.get('busNo')! as List<String>;
+    busses = boxes.getBusList();
+
     for (var i in boxes.taxis) {
       if(!busses.contains(i['taxiNo']!)){
         busses.add(i['taxiNo']!);
@@ -55,8 +56,8 @@ class _TodayPageState extends State<TodayPage>
   }
 
   String getNumber() {
-    final driverNos = boxes.dataBox.get('driverNo')! as List<String>;
-    final busses = boxes.dataBox.get('busNo')! as List<String>;
+    final driverNos = boxes.getDriverNoList();
+    final busses = boxes.getBusList();
     var str = '';
     for (var i = 0; i < busses.length; i++) {
       if (busses[i] == busNo) {

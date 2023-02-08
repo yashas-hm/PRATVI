@@ -25,7 +25,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final busses = boxes.dataBox.get('busNo')! as List<String>;
+    final busses = boxes.getBusList();
     final list = <String>[];
     for (var i in boxes.busData.values.toList()) {
       for (var j in i) {

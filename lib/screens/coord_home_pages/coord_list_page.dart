@@ -28,7 +28,7 @@ class _CoordListPageState extends State<CoordListPage> {
         list.add(j['name']!);
       }
     }
-    final busses = boxes.dataBox.get('busNo')! as List<String>;
+    final busses = boxes.getBusList();
     final notCheckedIn = <Map<String, String>>[];
     for (var i in boxes.familyData) {
       if (!list.contains(i['name'])) {

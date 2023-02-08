@@ -26,6 +26,24 @@ class BoxController extends GetxController {
     return 'waiting';
   }
 
+  List<String> getBusList(){
+    final list = <String>[];
+    final data = dataBox.get('busNo')!;
+    for(var i in data){
+      list.add(i.toString());
+    }
+    return list;
+  }
+
+  List<String> getDriverNoList(){
+    final list = <String>[];
+    final data = dataBox.get('driverNo')!;
+    for(var i in data){
+      list.add(i.toString());
+    }
+    return list;
+  }
+
   Future<void> initialiseHive() async {
     await Hive.initFlutter();
     Hive.registerAdapter(RouteModelAdapter());
@@ -104,7 +122,7 @@ class BoxController extends GetxController {
     dataBox.delete('busNo');
     dataBox.delete('driverNo');
     final data = await FirebaseHelper().getBusses();
-    final drData = await FirebaseHelper().getBusses();
+    final drData = await FirebaseHelper().getDriverNos();
     dataBox.put('busNo', data);
     dataBox.put('driverNo', drData);
   }

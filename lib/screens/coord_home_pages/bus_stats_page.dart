@@ -18,7 +18,7 @@ class _BusStatusPageState extends State<BusStatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    final busses = controller.dataBox.get('busNo')! as List<String>;
+    final busses = controller.getBusList();
 
     return Scaffold(
       appBar: CustomAppBar.customAppBar(

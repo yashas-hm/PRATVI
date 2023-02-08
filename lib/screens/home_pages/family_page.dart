@@ -10,7 +10,7 @@ import 'package:resize/resize.dart';
 import 'package:url_launcher/link.dart';
 
 class FamilyPage extends StatefulWidget {
-  FamilyPage({Key? key}) : super(key: key);
+  const FamilyPage({Key? key}) : super(key: key);
 
   @override
   State<FamilyPage> createState() => _FamilyPageState();
