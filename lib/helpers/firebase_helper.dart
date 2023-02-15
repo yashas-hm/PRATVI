@@ -16,20 +16,24 @@ class FirebaseHelper {
   final controller = Get.find<Controller>();
 
   Future<bool> login(String number) async {
-    final loggedIn = await firestoreInstance
+    final collection = await firestoreInstance
         .collection(AppConstants.userCollection)
-        .doc(number)
         .get();
 
-    if (loggedIn.exists) {
-      controller.family = FamilyModel.fromJson(loggedIn.data()!);
-      AppSharedPreferences.setLoggedIn = true;
-      AppSharedPreferences.setLoginNumber = number;
-      return true;
-    } else {
-      SnackBarHelper.errorMsg(
-          msg: 'Please check number again. Family info not found.');
+    for(var doc in collection.docs){
+      final famNo = doc.id;
+      final docData = doc.data();
+      final famNos = AppHelpers.dynamicToString(docData['familyNumber']);
+      if(famNos.contains(number)){
+        controller.family = FamilyModel.fromJson(docData);
+        AppSharedPreferences.setLoggedIn = true;
+        AppSharedPreferences.setLoginNumber = famNo;
+        return true;
+      }
     }
+
+    SnackBarHelper.errorMsg(
+        msg: 'Please check number again. Family info not found.');
     return false;
   }
 

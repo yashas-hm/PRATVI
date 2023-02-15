@@ -88,32 +88,6 @@ class BusItem extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => onChange(1),
-            child: Container(
-              width: 80.sp,
-              height: 30.sp,
-              margin: EdgeInsets.only(left: 5.sp),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8.sp)),
-                color: status == Descriptions.busStatus[1]
-                    ? AppColors().lightGreen
-                    : Colors.grey,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                'Arrived',
-                style: TextStyle(
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 8.sp,
-          ),
-          InkWell(
             onTap: () => onChange(2),
             child: Container(
               width: 80.sp,
@@ -154,6 +128,32 @@ class BusItem extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 'Left',
+                style: TextStyle(
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 8.sp,
+          ),
+          InkWell(
+            onTap: () => onChange(1),
+            child: Container(
+              width: 80.sp,
+              height: 30.sp,
+              margin: EdgeInsets.only(left: 5.sp),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8.sp)),
+                color: status == Descriptions.busStatus[1]
+                    ? AppColors().lightGreen
+                    : Colors.grey,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                'Arrived',
                 style: TextStyle(
                   fontSize: 13.sp,
                   fontWeight: FontWeight.w600,

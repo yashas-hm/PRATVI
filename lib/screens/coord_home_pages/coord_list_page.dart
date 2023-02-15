@@ -147,7 +147,7 @@ class _CoordListPageState extends State<CoordListPage> {
                                   ),
                                 )
                               : Link(
-                                  uri: Uri.parse('tel://+91${guest['number']}'),
+                                  uri: Uri.parse('tel://${guest['number']}'),
                                   builder: (ctx, link) => InkWell(
                                     onTap: link,
                                     child: Container(
@@ -311,7 +311,7 @@ class _CoordListPageState extends State<CoordListPage> {
                         ),
                         Link(
                           uri: Uri.parse(
-                              'tel://+91${notCheckedIn[index]['number']}'),
+                              'tel://${notCheckedIn[index]['number']}'),
                           builder: (ctx, link) => InkWell(
                             onTap: link,
                             child: Container(

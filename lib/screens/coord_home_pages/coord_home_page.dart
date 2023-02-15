@@ -128,7 +128,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Bus ${index + 1}',
+                        busses[index],
                         style: TextStyle(
                           color: AppColors().darkGreen,
                           fontWeight: FontWeight.w400,
@@ -178,7 +178,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                         (e) => DropdownMenuItem<String>(
                           value: e,
                           child: Text(
-                            'Bus No. ${busses.indexOf(e) + 1}',
+                            e,
                             style: TextStyle(
                               fontSize: 15.sp,
                             ),
