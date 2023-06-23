@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:pratvi/controller/box_controller.dart';
-import 'package:pratvi/core/app_constants.dart';
-import 'package:pratvi/core/shared_preferences.dart';
-import 'package:pratvi/helpers/firebase_helper.dart';
-import 'package:pratvi/models/family_model.dart';
+import 'package:pra_tvi_web/controller/box_controller.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
+import 'package:pra_tvi_web/core/shared_preferences.dart';
+import 'package:pra_tvi_web/helpers/firebase_helper.dart';
+import 'package:pra_tvi_web/models/family_model.dart';
 
 class Controller extends GetxController {
   bool loggedIn = false;

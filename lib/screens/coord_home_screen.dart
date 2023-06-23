@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/controller/controller.dart';
-import 'package:pratvi/core/app_constants.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/core/shared_preferences.dart';
-import 'package:pratvi/screens/coord_home_pages/bus_stats_page.dart';
-import 'package:pratvi/screens/coord_home_pages/coord_home_page.dart';
-import 'package:pratvi/screens/coord_home_pages/coord_list_page.dart';
-import 'package:pratvi/screens/coord_home_pages/taxi_page.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
+import 'package:pra_tvi_web/controller/controller.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/core/shared_preferences.dart';
+import 'package:pra_tvi_web/screens/coord_home_pages/bus_stats_page.dart';
+import 'package:pra_tvi_web/screens/coord_home_pages/coord_home_page.dart';
+import 'package:pra_tvi_web/screens/coord_home_pages/coord_list_page.dart';
+import 'package:pra_tvi_web/screens/coord_home_pages/taxi_page.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
 
 class CoordHomeScreen extends StatelessWidget {
   CoordHomeScreen({Key? key}) : super(key: key);

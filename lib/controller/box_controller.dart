@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:pratvi/core/description_data.dart';
-import 'package:pratvi/helpers/firebase_helper.dart';
-import 'package:pratvi/models/family_model.dart';
-import 'package:pratvi/models/route_model.dart';
+import 'package:pra_tvi_web/core/description_data.dart';
+import 'package:pra_tvi_web/helpers/firebase_helper.dart';
+import 'package:pra_tvi_web/models/family_model.dart';
+import 'package:pra_tvi_web/models/route_model.dart';
 
 class BoxController extends GetxController {
   late final Box<RouteModel> routesBox;

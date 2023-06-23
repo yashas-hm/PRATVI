@@ -1,25 +1,16 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:pratvi/controller/box_controller.dart';
-import 'package:pratvi/controller/connectivity_controller.dart';
-import 'package:pratvi/controller/controller.dart';
-import 'package:pratvi/core/shared_preferences.dart';
-import 'package:pratvi/firebase_options.dart';
+import 'package:pra_tvi_web/controller/box_controller.dart';
+import 'package:pra_tvi_web/controller/connectivity_controller.dart';
+import 'package:pra_tvi_web/controller/controller.dart';
+import 'package:pra_tvi_web/core/shared_preferences.dart';
+import 'package:pra_tvi_web/firebase_options.dart';
 
 class AppHelpers {
-  static void crashlyticsLog(String error) {
-    log(error);
-    final message = '$error\n Caused by user id: uid';
-    FirebaseCrashlytics.instance.log(message);
-  }
-
   static Future<void> initialise() async {
     WidgetsFlutterBinding.ensureInitialized();
 

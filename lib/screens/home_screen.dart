@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/controller/controller.dart';
-import 'package:pratvi/core/app_constants.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/screens/home_pages/family_page.dart';
-import 'package:pratvi/screens/home_pages/routes_page.dart';
-import 'package:pratvi/screens/home_pages/today_page.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
+import 'package:pra_tvi_web/controller/controller.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/screens/home_pages/family_page.dart';
+import 'package:pra_tvi_web/screens/home_pages/routes_page.dart';
+import 'package:pra_tvi_web/screens/home_pages/today_page.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/controller/box_controller.dart';
-import 'package:pratvi/controller/controller.dart';
-import 'package:pratvi/core/app_constants.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/helpers/firebase_helper.dart';
-import 'package:pratvi/helpers/snackbar_helper.dart';
-import 'package:pratvi/widgets/custom_appbar.dart';
+import 'package:pra_tvi_web/controller/box_controller.dart';
+import 'package:pra_tvi_web/controller/controller.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/helpers/firebase_helper.dart';
+import 'package:pra_tvi_web/helpers/snackbar_helper.dart';
+import 'package:pra_tvi_web/widgets/custom_appbar.dart';
 import 'package:resize/resize.dart';
 import 'package:url_launcher/link.dart';
 

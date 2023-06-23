@@ -1,0 +1,11 @@
+{
+    "name": "pra_tvi_web",
+    "short_name": "pra_tvi_web",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "Ruts gets Pranked!",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false
+}

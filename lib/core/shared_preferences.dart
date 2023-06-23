@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pratvi/core/app_constants.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
 
 class AppSharedPreferences{
   static late SharedPreferences _preferences;

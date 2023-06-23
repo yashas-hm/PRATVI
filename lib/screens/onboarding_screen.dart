@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/core/app_constants.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/core/description_data.dart';
-import 'package:pratvi/screens/home_screen.dart';
+import 'package:pra_tvi_web/core/app_constants.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/core/description_data.dart';
+import 'package:pra_tvi_web/screens/home_screen.dart';
 import 'package:resize/resize.dart';
 
 class OnBoardingScreen extends StatefulWidget {

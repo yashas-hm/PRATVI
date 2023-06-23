@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:pratvi/helpers/app_helpers.dart';
+import 'package:pra_tvi_web/helpers/app_helpers.dart';
 
 part 'hive_adapter/route_model.g.dart';
 

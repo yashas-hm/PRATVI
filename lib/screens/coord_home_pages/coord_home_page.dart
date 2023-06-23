@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/controller/box_controller.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/core/shared_preferences.dart';
-import 'package:pratvi/helpers/firebase_helper.dart';
-import 'package:pratvi/helpers/snackbar_helper.dart';
-import 'package:pratvi/screens/login_screen.dart';
-import 'package:pratvi/widgets/input_chip/chips_input.dart';
+import 'package:pra_tvi_web/controller/box_controller.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/core/shared_preferences.dart';
+import 'package:pra_tvi_web/helpers/firebase_helper.dart';
+import 'package:pra_tvi_web/helpers/snackbar_helper.dart';
+import 'package:pra_tvi_web/screens/login_screen.dart';
+import 'package:pra_tvi_web/widgets/input_chip/chips_input.dart';
 import 'package:resize/resize.dart';
 
 class CoordHomePage extends StatefulWidget {
@@ -19,6 +19,8 @@ class CoordHomePage extends StatefulWidget {
 class _CoordHomePageState extends State<CoordHomePage> {
   final boxes = Get.find<BoxController>();
   String busNo = '';
+  final focusNode = FocusNode();
+
   List<Map<String, String>> families = [];
   bool uploading = false;
 
@@ -220,6 +222,7 @@ class _CoordHomePageState extends State<CoordHomePage> {
                   height: 10.sp,
                 ),
                 ChipsInput<Map<String, String>>(
+                  focusNode: focusNode,
                   initialValue: families,
                   maxChips: 10,
                   decoration: InputDecoration(

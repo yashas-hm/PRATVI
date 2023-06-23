@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/curves.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_item.dart';
-import 'package:pratvi/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/curves.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_icon.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_item.dart';
+import 'package:pra_tvi_web/widgets/bottom_nav_bar/fluid_nav_bar_style.dart';
 
 typedef FluidNavBarChangeCallback = void Function(int selectedIndex);
 

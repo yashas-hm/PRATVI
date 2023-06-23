@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/controller/box_controller.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/widgets/custom_appbar.dart';
+import 'package:pra_tvi_web/controller/box_controller.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/widgets/custom_appbar.dart';
 import 'package:resize/resize.dart';
 import 'package:url_launcher/link.dart';
 
@@ -338,7 +338,9 @@ class _CoordListPageState extends State<CoordListPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 60.sp,),
+                SizedBox(
+                  height: 60.sp,
+                ),
               ],
             ),
           ),

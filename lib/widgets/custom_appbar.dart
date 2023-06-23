@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/core/color_constants.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
 import 'package:resize/resize.dart';
 
 class CustomAppBar {

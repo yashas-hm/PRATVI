@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pratvi/core/color_constants.dart';
-import 'package:pratvi/screens/splash_screen.dart';
-import 'package:pratvi/widgets/dismiss_keyboard.dart';
+import 'package:pra_tvi_web/core/color_constants.dart';
+import 'package:pra_tvi_web/screens/splash_screen.dart';
+import 'package:pra_tvi_web/widgets/dismiss_keyboard.dart';
 import 'package:resize/resize.dart';
 
 void main() {
@@ -15,12 +15,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = WidgetsBinding.instance.window.physicalSize;
+
+    final resize = screenSize.width > screenSize.height
+        ? Size(
+            screenSize.width,
+            screenSize.height,
+          )
+        : const Size(390, 844);
+
     return Resize(
       builder: () => DismissKeyboard(
         child: GetMaterialApp(
           defaultTransition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500),
           debugShowCheckedModeBanner: false,
+          title: 'PRATVI',
           theme: ThemeData(
             primaryColor: AppColors().darkGreen,
             scaffoldBackgroundColor: AppColors().pink,
@@ -55,7 +65,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       allowtextScaling: false,
-      size: const Size(390, 844),
+      size: resize,
     );
   }
 }

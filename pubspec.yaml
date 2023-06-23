@@ -1,9 +1,9 @@
-name: pratvi
+name: pra_tvi_web
 description: Ruts gets Pranked!
 
-publish_to: 'none'
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.2+6
+version: 1.0.0+3
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -25,7 +25,6 @@ dependencies:
   flutter_typeahead: ^4.1.1
 
   #INFO: firebase dependencies
-  firebase_crashlytics: ^3.0.6
   firebase_core: ^2.3.0
   cloud_firestore: ^4.1.0
   firebase_auth: ^4.1.4
@@ -45,9 +44,9 @@ dev_dependencies:
 flutter_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/pratvi_logo.png"
+  image_path: "assets/images/pra_tvi_web_logo.png"
   adaptive_icon_background: "#F6F5E8"
-  adaptive_icon_foreground: "assets/images/pratvi_logo.png"
+  adaptive_icon_foreground: "assets/images/pra_tvi_web_logo.png"
   remove_alpha_ios: true
   min_sdk_android: 21
 

@@ -1,4 +1,4 @@
-import 'package:pratvi/helpers/app_helpers.dart';
+import 'package:pra_tvi_web/helpers/app_helpers.dart';
 
 class FamilyModel {
   List<String> roomNo;
